@@ -5,6 +5,7 @@ import { budgetSnapshot, enabledAccounts } from './lib/xSource.js';
 import { POSTS_FILE } from './lib/posts.js';
 import { LABELS_FILE } from './lib/classify.js';
 import { KNOWLEDGE_FILE } from './lib/knowledge.js';
+import { runPoll } from './lib/pipeline.js';
 
 const app = express();
 app.use(express.json({ limit: '100kb' }));
@@ -29,6 +30,21 @@ app.get('/api/posts', (_req, res) => {
       .slice(0, 20)
       .map((p) => ({ ...p, label: labels[p.id] ?? null })),
   );
+});
+
+// "Check for new announcements": poll X, label new posts, rebuild knowledge.
+let polling = false;
+app.post('/api/poll', async (_req, res) => {
+  if (polling) return res.status(409).json({ error: 'A check is already running.' });
+  polling = true;
+  try {
+    res.json(await runPoll());
+  } catch (err) {
+    console.error('[poll]', err);
+    res.status(500).json({ error: 'Check failed. See the server log.' });
+  } finally {
+    polling = false;
+  }
 });
 
 app.get('/api/stats', (_req, res) => {

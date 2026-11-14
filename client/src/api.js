@@ -8,3 +8,4 @@ async function request(path, options) {
 export const health = () => request('/api/health');
 export const stats = () => request('/api/stats');
 export const posts = () => request('/api/posts');
+export const poll = () => request('/api/poll', { method: 'POST' });

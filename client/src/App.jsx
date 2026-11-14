@@ -1,91 +1,116 @@
-import { useEffect, useState } from 'react';
-import { health as fetchHealth, stats as fetchStats, posts as fetchPosts } from './api.js';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Header from './components/Header.jsx';
+import Composer from './components/Composer.jsx';
+import Conversation from './components/Conversation.jsx';
+import { poll, posts as fetchPosts, stats as fetchStats } from './api.js';
 
-function Row({ label, ok, detail }) {
-  return (
-    <li className="flex items-start gap-2">
-      <span className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${ok ? 'bg-brand-600' : 'bg-red-500'}`} />
-      <span>
-        <span className="font-medium">{label}</span>
-        {detail && <span className="text-slate-500"> · {detail}</span>}
-      </span>
-    </li>
-  );
-}
+// Chat answers arrive with the /api/chat endpoint (next step). Until then the composer is disabled.
+const CHAT_ENABLED = false;
+
+let nextId = 1;
 
 export default function App() {
-  const [health, setHealth] = useState(null);
+  const [messages, setMessages] = useState([]); // { id, kind: 'user'|'poll'|'posts'|'error'|'pending', ... }
   const [stats, setStats] = useState(null);
-  const [error, setError] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const [busy, setBusy] = useState(false);
+  const endRef = useRef(null);
 
-  useEffect(() => {
-    fetchHealth().then(setHealth).catch((e) => setError(e.message));
-    fetchStats().then(setStats).catch(() => {});
-    fetchPosts().then(setPosts).catch(() => {});
-  }, []);
+  const refreshStats = useCallback(() => fetchStats().then(setStats).catch(() => {}), []);
+  useEffect(() => { refreshStats(); }, [refreshStats]);
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
 
-  const a = health?.anthropic;
-  const x = health?.x;
+  const push = (m) => setMessages((ms) => [...ms, { id: nextId++, ...m }]);
+  const replacePending = (m) =>
+    setMessages((ms) => [...ms.filter((x) => x.kind !== 'pending'), { id: nextId++, ...m }]);
+
+  async function checkAnnouncements() {
+    if (busy) return;
+    setBusy(true);
+    push({ kind: 'user', text: 'Check for new announcements' });
+    push({ kind: 'pending', text: 'Checking official X accounts…' });
+    try {
+      const r = await poll();
+      replacePending({ kind: 'poll', result: r });
+    } catch (err) {
+      replacePending({ kind: 'error', text: err.message });
+    } finally {
+      setBusy(false);
+      refreshStats();
+    }
+  }
+
+  async function showStoredPosts() {
+    if (busy) return;
+    push({ kind: 'user', text: 'Show stored posts' });
+    try {
+      push({ kind: 'posts', posts: await fetchPosts() });
+    } catch (err) {
+      push({ kind: 'error', text: err.message });
+    }
+  }
+
+  const empty = messages.length === 0;
+  const actions = [
+    { label: 'Check for new announcements', onClick: checkAnnouncements },
+    { label: 'Show stored posts', onClick: showStoredPosts },
+  ];
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6">
-      <h1 className="text-lg font-semibold text-brand-800">Kout · كوت</h1>
-      <p className="text-sm text-slate-600">
-        Ask about Kuwaiti government services in Arabic or English.
-        <span className="mx-1 text-slate-300">|</span>
-        <span dir="rtl">اسأل عن الخدمات الحكومية في الكويت</span>
-      </p>
+    <div className="flex h-full flex-col">
+      <Header stats={stats} />
 
-      <section className="mt-6 rounded-xl border border-slate-200 bg-white p-4 text-sm">
-        <h2 className="mb-3 font-semibold">System status</h2>
-        {error && <p className="text-red-600">Server not reachable: {error}</p>}
-        {!health && !error && <p className="text-slate-500">Checking…</p>}
-        {health && (
-          <ul className="space-y-2">
-            <Row label="Anthropic key" ok={a.keySet} detail={a.keySet ? 'set' : 'missing in .env'} />
-            <Row label="Chat model" ok={a.chat.ok} detail={a.chat.ok ? a.chat.model : a.chat.error} />
-            <Row label="Fast model" ok={a.fast.ok} detail={a.fast.ok ? a.fast.model : a.fast.error} />
-            <Row label="X token" ok={x.tokenSet} detail={x.tokenSet ? 'set' : 'missing in .env (fixtures will be used)'} />
-            <Row label="X accounts" ok={x.enabledAccounts.length > 0} detail={x.enabledAccounts.join(', ') || 'none enabled'} />
-          </ul>
-        )}
-        {stats && (
-          <p className="mt-3 text-xs text-slate-500">
-            Claude spend: ${stats.llm.spentUsd.toFixed(4)} of ${stats.llm.capUsd.toFixed(2)} ({stats.llm.calls} calls)
-            <span className="mx-1 text-slate-300">|</span>
-            X spend: ${stats.x.spentUsd.toFixed(3)} of ${stats.x.capUsd.toFixed(2)}
-            <span className="mx-1 text-slate-300">|</span>
-            Knowledge: {stats.services} services, {stats.posts} posts
-          </p>
-        )}
-      </section>
-
-      <section className="mt-4 rounded-xl border border-slate-200 bg-white p-4 text-sm">
-        <h2 className="mb-3 font-semibold">Recent X posts ({posts.length})</h2>
-        {posts.length === 0 && <p className="text-slate-500">No posts yet. Run <code>npm run ingest:x</code>.</p>}
-        <ul className="divide-y divide-slate-100">
-          {posts.map((p) => (
-            <li key={p.id} className="py-2">
-              <div className="mb-1 text-xs text-slate-500">
-                @{p.account} · {String(p.date).slice(0, 10)} ·{' '}
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-brand-700 hover:underline">open on X</a>
-                {p.label && (
-                  <span
-                    className={`ms-2 rounded px-1.5 py-0.5 font-medium ${
-                      p.label.category === 'not_relevant' ? 'bg-slate-100 text-slate-500' : 'bg-brand-100 text-brand-800'
-                    }`}
+      {empty ? (
+        <main className="flex flex-1 flex-col items-center justify-center px-4 pb-24">
+          <h1 className="mb-1 text-center font-serif text-3xl text-ink sm:text-4xl">How can I help you today?</h1>
+          <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
+          <div className="w-full max-w-2xl">
+            <Composer disabled={!CHAT_ENABLED} />
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              {actions.map((a) => (
+                <button
+                  key={a.label}
+                  onClick={a.onClick}
+                  disabled={busy}
+                  className="rounded-lg border border-paper-line bg-paper-card px-3 py-1.5 text-sm text-ink-soft hover:border-ink-faint hover:text-ink disabled:opacity-50"
+                >
+                  {a.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </main>
+      ) : (
+        <>
+          <main className="min-h-0 flex-1 overflow-y-auto">
+            <div className="mx-auto max-w-2xl px-4 py-6">
+              <Conversation messages={messages} />
+              <div ref={endRef} />
+            </div>
+          </main>
+          <div className="bg-paper px-4 pb-3">
+            <div className="mx-auto max-w-2xl">
+              <div className="mb-2 flex flex-wrap gap-2">
+                {actions.map((a) => (
+                  <button
+                    key={a.label}
+                    onClick={a.onClick}
+                    disabled={busy}
+                    className="rounded-lg border border-paper-line bg-paper-card px-2.5 py-1 text-xs text-ink-soft hover:border-ink-faint hover:text-ink disabled:opacity-50"
                   >
-                    {p.label.category === 'not_relevant' ? 'dropped' : `kept · ${p.label.category} · ${p.label.topic}`}
-                  </span>
-                )}
+                    {a.label}
+                  </button>
+                ))}
               </div>
-              {p.label?.summary_en && <p className="mb-1 text-xs italic text-slate-600">{p.label.summary_en}</p>}
-              <p dir="auto" className="whitespace-pre-wrap text-slate-800">{p.text}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+              <Composer disabled={!CHAT_ENABLED} />
+            </div>
+          </div>
+        </>
+      )}
+
+      <footer className="px-4 pb-3 text-center text-[11px] leading-relaxed text-ink-faint">
+        Answers come from official sources only. Always confirm with the relevant government entity.
+        <span dir="rtl" className="block">الإجابات مأخوذة من مصادر رسمية فقط. يرجى دائماً التأكد من الجهة الحكومية المختصة.</span>
+      </footer>
     </div>
   );
 }
