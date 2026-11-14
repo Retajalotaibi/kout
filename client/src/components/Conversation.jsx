@@ -19,7 +19,6 @@ function PollResult({ r }) {
       <p className="text-sm text-ink-soft">
         {live ? <>Checked {r.accounts.map((a) => `@${a}`).join(', ')}.</> : <>Live X wasn't available, so offline fixtures were used.</>}
         {r.newestStored && <> Newest post we have is from {new Date(r.newestStored).toLocaleString()}.</>}
-        {r.added === 0 && <> Use “Show stored posts” to see what's already saved.</>}
       </p>
       <p className="text-xs text-ink-faint">
         Source:{' '}
@@ -27,6 +26,12 @@ function PollResult({ r }) {
         {' · '}X spend {usd(r.spentUsd)} of {usd(r.capUsd, 2)} · Claude spend {usd(r.llm.spentUsd)} of {usd(r.llm.capUsd, 2)}
       </p>
       {r.newPosts.length > 0 && <div className="space-y-2">{r.newPosts.map((p) => <PostCard key={p.id} post={p} />)}</div>}
+      {r.added === 0 && r.latestPosts?.length > 0 && (
+        <div className="space-y-2">
+          <p className="text-sm text-ink-soft">Latest {r.latestPosts.length === 1 ? 'tweet' : 'tweets'} we have:</p>
+          {r.latestPosts.map((p) => <PostCard key={p.id} post={p} />)}
+        </div>
+      )}
     </div>
   );
 }
