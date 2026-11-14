@@ -1,4 +1,5 @@
 Entity: MOHE
+Topic: education
 
 <!--
 Ministry of Higher Education (MOHE) — paste pages copied from the official website below this comment.

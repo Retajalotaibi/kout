@@ -36,6 +36,7 @@ function pickUrl(raw, body) {
 export function parsePages(fileText, defaultEntity) {
   const text = fileText.replace(/<!--[\s\S]*?-->/g, ''); // instructions live in comments
   const fileEntity = text.match(/^Entity:\s*(.+)$/m)?.[1]?.trim() || defaultEntity;
+  const fileTopic = text.match(/^Topic:\s*(\w+)\s*$/m)?.[1];
   const headers = [...text.matchAll(HEADER)];
   return headers
     .map((h, i) => {
@@ -43,7 +44,7 @@ export function parsePages(fileText, defaultEntity) {
       const body = text.slice(h.index + h[0].length, headers[i + 1]?.index ?? text.length).trim();
       const list = extras.some((x) => x.toLowerCase() === 'list');
       const entity = extras.find((x) => x.toLowerCase() !== 'list');
-      return { url: pickUrl(h[1], body), copied: h[2], entity: (entity || fileEntity || '').trim(), list, text: body };
+      return { url: pickUrl(h[1], body), copied: h[2], entity: (entity || fileEntity || '').trim(), topic: fileTopic, list, text: body };
     })
     .filter((p) => p.text.length >= MIN_PAGE_CHARS);
 }
@@ -105,8 +106,9 @@ function asList(v) {
 function normalize(s, page) {
   const out = { ...s };
   for (const f of LIST_FIELDS) out[f] = asList(s[f]);
-  out.entity = s.entity || page.entity;
-  out.topic = TOPICS.has(s.topic) ? s.topic : 'other';
+  // Entity code and (if set with a "Topic:" line) topic come from the file, not the model.
+  out.entity = page.entity || s.entity;
+  out.topic = TOPICS.has(page.topic) ? page.topic : TOPICS.has(s.topic) ? s.topic : 'other';
   out.source_url = s.source_url || page.url;
   out.copied_on = s.copied_on || page.copied;
   out.fees = s.fees ?? null;
@@ -144,7 +146,7 @@ export async function extractServices({ force = false } = {}) {
       }
       if (page.list) {
         stats.lists++;
-        services.push(listEntry(page));
+        services.push(normalize(listEntry(page), page));
         continue;
       }
       const input = `Entity: ${page.entity}\n\n=== ${page.url} | copied ${page.copied} ===\n${page.text}`;
@@ -166,7 +168,7 @@ export async function extractServices({ force = false } = {}) {
         stats.extracted++;
         console.log(`[services] ${stem}.md ${page.url} -> ${result.length} service(s)`);
       }
-      services.push(...result);
+      services.push(...result.map((s) => normalize(s, page))); // re-apply file entity/topic to cached results too
     }
   }
 
