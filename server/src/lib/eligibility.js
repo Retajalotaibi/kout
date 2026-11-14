@@ -84,8 +84,13 @@ export async function eligibilityList() {
   const stored = await load(STORE, {});
   const out = [];
   for (const s of await loadServices()) {
-    const r = stored[keyOf(s)]?.rules;
+    let r = stored[keyOf(s)]?.rules;
     if (!r || (r.min_age === null && r.max_age === null && !r.nationality)) continue;
+    // Services titled "… كويتي" (but not "كويتي / غير كويتي") are for Kuwaitis even when the conditions don't say so.
+    const title = String(s.service_ar ?? '');
+    if (!r.nationality && /كويتي/.test(title) && !/غير\s*كويتي/.test(title)) {
+      r = { ...r, nationality: 'kuwaiti', nationality_quote: title };
+    }
     out.push({
       key: keyOf(s),
       title_ar: s.service_ar ?? null,

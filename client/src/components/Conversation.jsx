@@ -1,5 +1,22 @@
 import PostCard from './PostCard.jsx';
 import Eligibility from './Eligibility.jsx';
+import { useState } from 'react';
+import { canSpeak, speak, stopSpeaking } from '../lib/speech.js';
+
+function ListenButton({ text }) {
+  const [on, setOn] = useState(false);
+  if (!canSpeak || !text) return null;
+  const toggle = () => {
+    if (on) { stopSpeaking(); setOn(false); return; }
+    setOn(true);
+    speak(text, { onEnd: () => setOn(false) });
+  };
+  return (
+    <button onClick={toggle} className="rounded-md border border-paper-line px-2 py-0.5 text-xs text-ink-soft hover:text-ink">
+      {on ? '■ Stop · إيقاف' : '🔊 Listen · استمع'}
+    </button>
+  );
+}
 
 const usd = (n, d = 3) => `$${(Number(n) || 0).toFixed(d)}`;
 
@@ -44,7 +61,7 @@ export default function Conversation({ messages }) {
         if (m.kind === 'user') {
           return (
             <div key={m.id} className="flex justify-end">
-              <div dir="auto" className="max-w-[85%] rounded-2xl bg-paper-muted px-4 py-2.5 text-[15px]">{m.text}</div>
+              <div dir="auto" className="max-w-[85%] rounded-2xl bg-paper-muted px-4 py-2.5 text-[15px]">{m.voice && <span title="Spoken" className="me-1">🎙️</span>}{m.text}</div>
             </div>
           );
         }
@@ -64,6 +81,7 @@ export default function Conversation({ messages }) {
               <div className="space-y-3">
                 {m.change_note && <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">{m.change_note}</p>}
                 <div className={`whitespace-pre-wrap ${m.status === 'answered' ? 'text-ink' : 'text-ink-soft'}`}>{m.answer}</div>
+                <ListenButton text={m.answer} />
                 {m.sources?.length > 0 && (
                   <ul className="space-y-1 text-sm">
                     {m.sources.map((s) => (
@@ -82,6 +100,7 @@ export default function Conversation({ messages }) {
                   <div className="rounded-xl bg-brand-50 px-4 py-3">
                     <p className="mb-1 text-xs font-medium text-brand-800">AI summary · ملخص</p>
                     <div className="whitespace-pre-wrap text-[15px] leading-relaxed text-ink">{m.summary}</div>
+                    <div className="mt-2"><ListenButton text={m.summary} /></div>
                   </div>
                 )}
                 <p className={m.summary ? 'text-sm text-ink-soft' : ''}>{m.text ?? (m.posts.length ? `The ${m.posts.length} most recent stored posts:` : 'No posts stored yet.')}</p>

@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import Composer from './components/Composer.jsx';
 import Conversation from './components/Conversation.jsx';
 import { ask, poll, stats as fetchStats } from './api.js';
+import { speak, stopSpeaking } from './lib/speech.js';
 
 
 let nextId = 1;
@@ -37,10 +38,11 @@ export default function App() {
     }
   }
 
-  async function send(text) {
+  async function send(text, { voice = false } = {}) {
     if (busy) return;
     setBusy(true);
-    push({ kind: 'user', text });
+    stopSpeaking();
+    push({ kind: 'user', text, voice });
     push({ kind: 'pending', text: 'Looking it up…' });
     try {
       // Last few question/answer turns so follow-ups ("and the fee?") work.
@@ -52,6 +54,8 @@ export default function App() {
       if (r.kind === 'tweets') replacePending({ kind: 'posts', text: r.text, summary: r.summary, posts: r.posts });
       else if (r.kind === 'answer') replacePending({ kind: 'answer', ...r });
       else replacePending({ kind: 'text', text: r.text });
+      // Spoken question → read the reply aloud.
+      if (voice) speak(r.kind === 'answer' ? r.answer : r.kind === 'tweets' ? r.summary ?? r.text : r.text);
     } catch (err) {
       replacePending({ kind: 'error', text: err.message });
     } finally {
