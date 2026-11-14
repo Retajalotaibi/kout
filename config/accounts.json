@@ -7,5 +7,7 @@
   { "handle": "mohe_kw",    "entity": "MOHE",  "enabled": false, "note": "Linked from mohe.edu.kw. Enable if higher education is a demo topic." },
   { "handle": "TODO",       "entity": "PACI",  "enabled": false, "note": "Find the handle via the X link on paci.gov.kw." },
   { "handle": "TODO",       "entity": "PAM",   "enabled": false, "note": "Public Authority for Manpower: find via its official website." },
-  { "handle": "TODO",       "entity": "MOH",   "enabled": false, "note": "Ministry of Health: find via moh.gov.kw." }
+  { "handle": "Kuwait_moh",  "entity": "MOH",   "enabled": true,  "note": "Ministry of Health. Linked from moh.gov.kw header/footer (checked 2026-11-14)." },
+  { "handle": "MOD_KW",      "entity": "MOD",   "enabled": true,  "note": "Ministry of Defence account (links to mod.gov.kw). May post rarely; verify check mark." },
+  { "handle": "KuwaitArmyGHQ", "entity": "MOD", "enabled": true,  "note": "Kuwait Army General Staff HQ (under MOD); posts MOD announcements. Verify check mark." }
 ]

@@ -9,7 +9,7 @@ const QUESTIONS = [
   { entity: 'MOI', q: 'What are the requirements for a taxi permit?' },
   { entity: 'MOHE', q: 'What are the conditions for the MOHE excellence scholarship?' },
   { entity: 'PAM', q: 'ما شروط تدريب الطلبة الميداني؟' },
-  { entity: 'X', q: 'آخر 4 تغريدات', label: 'Latest official posts' },
+  { entity: 'MOH · MOD', q: 'آخر 4 أخبار من وزارة الصحة ووزارة الدفاع', label: 'Latest Health & Defence news on X' },
 ];
 
 export const COVERED = ['PACI', 'MOI', 'MOH', 'MOHE', 'PAM', 'PAMA'];

@@ -9,6 +9,8 @@ export const ENTITY_AR = {
   'Council of Ministers': 'مجلس الوزراء',
   MOHE: 'وزارة التعليم العالي',
   PACI: 'الهيئة العامة للمعلومات المدنية',
+  MOH: 'وزارة الصحة',
+  MOD: 'وزارة الدفاع',
 };
 
 const DEFAULT_COUNT = 5;
@@ -24,7 +26,7 @@ function norm(text) {
     .toLowerCase();
 }
 
-const TWEET_WORDS = /\b(tweets?|posts?|announcements?|updates?|x posts?)\b|تغريد|تويت|منشور|اعلان|تحديث|بوست/;
+const TWEET_WORDS = /\b(tweets?|posts?|announcements?|updates?|news|x posts?)\b|تغريد|تويت|منشور|اعلان|تحديث|بوست|اخبار|خبر/;
 
 const NUMBER_WORDS = {
   one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10,
@@ -38,6 +40,8 @@ const ENTITY_ALIASES = {
   KUNA: ['kuna', 'كونا', 'وكاله الانباء'],
   'Council of Ministers': ['council of ministers', 'cabinet', 'مجلس الوزراء'],
   MOHE: ['mohe', 'higher education', 'التعليم العالي'],
+  MOH: ['moh', 'health', 'ministry of health', 'الصحه', 'وزاره الصحه'],
+  MOD: ['mod', 'defence', 'defense', 'ministry of defence', 'ministry of defense', 'army', 'الدفاع', 'وزاره الدفاع', 'الجيش'],
 };
 
 function findCount(t) {
@@ -46,7 +50,7 @@ function findCount(t) {
   for (const [word, n] of Object.entries(NUMBER_WORDS)) {
     if (new RegExp(`(^|\\s)${word}(\\s|$)`).test(t)) return n;
   }
-  if (/\b(latest|last|newest|most recent)\b/.test(t) && !/\b(tweets|posts|announcements|updates)\b/.test(t)) return 1;
+  if (/\b(latest|last|newest|most recent)\b/.test(t) && !/\b(tweets|posts|announcements|updates|news)\b/.test(t)) return 1;
   if (/(اخر|احدث) (تغريده|تويته|منشور|اعلان)(\s|$)/.test(t)) return 1;
   return DEFAULT_COUNT;
 }
