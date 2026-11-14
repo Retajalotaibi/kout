@@ -1,0 +1,35 @@
+# Render Blueprint: one Node web service serving the API and the built React app.
+# Secrets are marked sync: false — Render asks for them in the dashboard; they are never committed.
+services:
+  - type: web
+    name: kout
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CHAT_MODEL
+        value: claude-sonnet-5-5
+      - key: FAST_MODEL
+        value: claude-haiku-5-5
+      - key: LLM_MAX_BUDGET_USD
+        value: "4"
+      - key: X_BEARER_TOKEN
+        sync: false
+      - key: X_MAX_BUDGET_USD
+        value: "3"
+      - key: X_POST_READ_USD
+        value: "0.005"
+      - key: X_USER_READ_USD
+        value: "0.010"
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: kout

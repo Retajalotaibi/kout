@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import express from 'express';
 import { CHAT_MODEL, FAST_MODEL, checkModel, llmSpend } from './lib/claude.js';
 import { budgetSnapshot, enabledAccounts } from './lib/xSource.js';
@@ -10,6 +12,7 @@ import { summarizePosts } from './lib/summarize.js';
 import { enabledAccounts as allAccountsFor } from './lib/xSource.js';
 import { runPoll } from './lib/pipeline.js';
 import { answerQuestion } from './lib/chat.js';
+import { ROOT } from './lib/paths.js';
 import { eligibilityList } from './lib/eligibility.js';
 
 const app = express();
@@ -122,6 +125,17 @@ app.get('/api/stats', async (_req, res) => {
     x: await budgetSnapshot(),
   });
 });
+
+// Lightweight liveness probe for Render (no database or API calls).
+app.get('/healthz', (_req, res) => res.send('ok'));
+
+// Production: serve the built React app from client/dist on the same origin as the API.
+const DIST = path.join(ROOT, 'client', 'dist');
+if (fs.existsSync(DIST)) {
+  app.use(express.static(DIST, { index: false, maxAge: '1h' }));
+  app.get(/^\/(?!api\/).*/, (_req, res) => res.sendFile(path.join(DIST, 'index.html')));
+  console.log(`[server] serving client from ${DIST}`);
+}
 
 const PORT = Number(process.env.PORT) || 3001;
 app.listen(PORT, () => {
