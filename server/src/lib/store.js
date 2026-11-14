@@ -18,6 +18,10 @@ let dbName = null;
 let collection = null;
 let connecting = null;
 let lastFailure = 0;
+let lastError = null;
+
+// Error text without credentials (mongodb+srv://user:pass@host → mongodb+srv://***@host).
+const redact = (msg) => String(msg ?? '').replace(/\/\/[^@\s]+@/g, '//***@');
 
 async function connect() {
   const uri = process.env.MONGODB_URI;
@@ -34,11 +38,13 @@ async function connect() {
         const col = db.collection('store');
         await seedFromFiles(col);
         collection = col;
+        lastError = null;
         console.log(`[store] connected to MongoDB (db=${db.databaseName})`);
         return col;
       } catch (err) {
         lastFailure = Date.now();
-        console.warn(`[store] MongoDB unavailable (${err.message}); using local JSON files.`);
+        lastError = redact(`${err.name}: ${err.message}`);
+        console.warn(`[store] MongoDB unavailable (${lastError}); using local JSON files.`);
         await client?.close().catch(() => {});
         client = null;
         return null;
@@ -90,7 +96,9 @@ export async function save(name, value) {
 export async function storeStatus() {
   if (!process.env.MONGODB_URI) return { backend: 'files', detail: 'MONGODB_URI not set' };
   const col = await connect();
-  return col ? { backend: 'mongodb', detail: dbName } : { backend: 'files', detail: 'MongoDB unreachable' };
+  return col
+    ? { backend: 'mongodb', detail: dbName }
+    : { backend: 'files', detail: `MongoDB unreachable: ${lastError ?? 'retrying'}` };
 }
 
 /** Close the connection so CLI scripts can exit. */
