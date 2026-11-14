@@ -10,11 +10,23 @@ import { loadPrompt } from './prompts.js';
 import { load, save } from './store.js';
 
 const MANUAL_DIR = path.join(ROOT, 'manual');
-const HEADER = /^===\s*(\S+)\s*\|\s*copied\s+(\d{4}-\d{2}-\d{2})\s*(?:\|\s*([^=]+?)\s*)?===\s*$/gm;
+const HEADER = /^===\s*(.+?)\s*\|\s*copied\s+(\d{4}-\d{2}-\d{2})\s*(?:\|\s*([^=]+?)\s*)?===\s*$/gm;
 const MIN_PAGE_CHARS = 20;
 
 const TOPICS = new Set(['civil_id', 'residency', 'traffic', 'work', 'health', 'education', 'other']);
 const LIST_FIELDS = ['channels', 'conditions', 'documents', 'exemptions', 'steps', 'unclear'];
+
+/**
+ * Source URL from the header: a plain URL, or a markdown link "[text](https://...)" (editors add these).
+ * If the header still has the placeholder, fall back to a "URL: https://..." line inside the page.
+ */
+function pickUrl(raw, body) {
+  const md = raw.match(/\]\((https?:\/\/[^)\s]+)\)/);
+  if (md) return md[1];
+  if (/^https?:\/\//i.test(raw)) return raw;
+  const inPage = body.match(/^\s*(?:url|link|الرابط|رابط)\s*[:：]\s*(https?:\/\/\S+)/im);
+  return inPage ? inPage[1] : raw;
+}
 
 /**
  * Split one manual file into pages: [{ url, copied, entity, list, text }].
@@ -28,15 +40,10 @@ export function parsePages(fileText, defaultEntity) {
   return headers
     .map((h, i) => {
       const extras = (h[3] ?? '').split('|').map((x) => x.trim()).filter(Boolean);
+      const body = text.slice(h.index + h[0].length, headers[i + 1]?.index ?? text.length).trim();
       const list = extras.some((x) => x.toLowerCase() === 'list');
       const entity = extras.find((x) => x.toLowerCase() !== 'list');
-      return {
-        url: h[1],
-        copied: h[2],
-        entity: (entity || fileEntity || '').trim(),
-        list,
-        text: text.slice(h.index + h[0].length, headers[i + 1]?.index ?? text.length).trim(),
-      };
+      return { url: pickUrl(h[1], body), copied: h[2], entity: (entity || fileEntity || '').trim(), list, text: body };
     })
     .filter((p) => p.text.length >= MIN_PAGE_CHARS);
 }
