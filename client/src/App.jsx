@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { health as fetchHealth, stats as fetchStats } from './api.js';
+import { health as fetchHealth, stats as fetchStats, posts as fetchPosts } from './api.js';
 
 function Row({ label, ok, detail }) {
   return (
@@ -17,10 +17,12 @@ export default function App() {
   const [health, setHealth] = useState(null);
   const [stats, setStats] = useState(null);
   const [error, setError] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     fetchHealth().then(setHealth).catch((e) => setError(e.message));
     fetchStats().then(setStats).catch(() => {});
+    fetchPosts().then(setPosts).catch(() => {});
   }, []);
 
   const a = health?.anthropic;
@@ -51,8 +53,26 @@ export default function App() {
         {stats && (
           <p className="mt-3 text-xs text-slate-500">
             Claude spend: ${stats.llm.spentUsd.toFixed(4)} of ${stats.llm.capUsd.toFixed(2)} ({stats.llm.calls} calls)
+            <span className="mx-1 text-slate-300">|</span>
+            X spend: ${stats.x.spentUsd.toFixed(3)} of ${stats.x.capUsd.toFixed(2)}
           </p>
         )}
+      </section>
+
+      <section className="mt-4 rounded-xl border border-slate-200 bg-white p-4 text-sm">
+        <h2 className="mb-3 font-semibold">Recent X posts ({posts.length})</h2>
+        {posts.length === 0 && <p className="text-slate-500">No posts yet. Run <code>npm run ingest:x</code>.</p>}
+        <ul className="divide-y divide-slate-100">
+          {posts.map((p) => (
+            <li key={p.id} className="py-2">
+              <div className="mb-1 text-xs text-slate-500">
+                @{p.account} · {String(p.date).slice(0, 10)} ·{' '}
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-brand-700 hover:underline">open on X</a>
+              </div>
+              <p dir="auto" className="whitespace-pre-wrap text-slate-800">{p.text}</p>
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );
