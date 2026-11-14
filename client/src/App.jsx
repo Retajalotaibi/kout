@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
 import Composer from './components/Composer.jsx';
 import Conversation from './components/Conversation.jsx';
-import Faq from './components/Faq.jsx';
+import Faq, { FeatureTiles } from './components/Faq.jsx';
 import { ask, poll, stats as fetchStats } from './api.js';
 import { speak, stopSpeaking } from './lib/speech.js';
 
@@ -84,8 +84,9 @@ export default function App() {
           <h1 className="mb-1 text-center font-serif text-3xl text-brand-800 sm:text-4xl">How can I help you today?</h1>
           <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
           <div className="w-full max-w-2xl">
+            <Faq onAsk={send} disabled={busy} />
             <Composer disabled={busy} onSend={send} />
-            <Faq onAsk={send} onEligibility={openEligibility} onAnnouncements={checkAnnouncements} disabled={busy} />
+            <FeatureTiles onEligibility={openEligibility} onAnnouncements={checkAnnouncements} disabled={busy} />
           </div>
         </main>
       ) : (

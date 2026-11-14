@@ -30,26 +30,10 @@ function Tile({ title, subtitle, onClick, disabled, icon }) {
   );
 }
 
-export default function Faq({ onAsk, onEligibility, onAnnouncements, disabled }) {
+/** Frequently asked questions, shown above the input bar. */
+export default function Faq({ onAsk, disabled }) {
   return (
-    <section className="mt-8 w-full">
-      <div className="mb-3 flex flex-col gap-2 sm:flex-row">
-        <Tile
-          icon="🪪"
-          title="Check my eligibility · تحقق من استحقاقيتي"
-          subtitle="See which services you qualify for from your civil ID"
-          onClick={onEligibility}
-          disabled={disabled}
-        />
-        <Tile
-          icon="📢"
-          title="Check for new announcements"
-          subtitle="Fetch the latest posts from official government accounts"
-          onClick={onAnnouncements}
-          disabled={disabled}
-        />
-      </div>
-
+    <section className="mb-4 w-full">
       <div className="mb-2 flex items-center gap-2">
         <span className="h-px flex-1 bg-paper-line" />
         <h2 className="text-xs font-medium uppercase tracking-wider text-ink-soft">
@@ -75,6 +59,31 @@ export default function Faq({ onAsk, onEligibility, onAnnouncements, disabled })
             </span>
           </button>
         ))}
+      </div>
+
+    </section>
+  );
+}
+
+/** Eligibility + announcements tiles and the scope note, shown below the input bar. */
+export function FeatureTiles({ onEligibility, onAnnouncements, disabled }) {
+  return (
+    <section className="mt-4 w-full">
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <Tile
+          icon="🪪"
+          title="Check my eligibility · تحقق من استحقاقيتي"
+          subtitle="See which services you qualify for from your civil ID"
+          onClick={onEligibility}
+          disabled={disabled}
+        />
+        <Tile
+          icon="📢"
+          title="Check for new announcements"
+          subtitle="Fetch the latest posts from official government accounts"
+          onClick={onAnnouncements}
+          disabled={disabled}
+        />
       </div>
 
       <p className="mt-3 text-center text-[11px] text-ink-faint">
