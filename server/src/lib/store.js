@@ -14,6 +14,7 @@ const RETRY_MS = 30_000;
 const fileOf = (name) => path.join(DATA, `${name}.json`);
 
 let client = null;
+let dbName = null;
 let collection = null;
 let connecting = null;
 let lastFailure = 0;
@@ -29,6 +30,7 @@ async function connect() {
         client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
         await client.connect();
         const db = client.db(process.env.MONGODB_DB || 'kout');
+        dbName = db.databaseName;
         const col = db.collection('store');
         await seedFromFiles(col);
         collection = col;
@@ -88,7 +90,7 @@ export async function save(name, value) {
 export async function storeStatus() {
   if (!process.env.MONGODB_URI) return { backend: 'files', detail: 'MONGODB_URI not set' };
   const col = await connect();
-  return col ? { backend: 'mongodb', detail: client.db().databaseName } : { backend: 'files', detail: 'MongoDB unreachable' };
+  return col ? { backend: 'mongodb', detail: dbName } : { backend: 'files', detail: 'MongoDB unreachable' };
 }
 
 /** Close the connection so CLI scripts can exit. */
