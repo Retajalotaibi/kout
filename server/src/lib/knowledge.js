@@ -7,16 +7,20 @@ import { load, save } from './store.js';
 const list = (v) => (Array.isArray(v) ? v.filter((x) => x != null && String(x).trim()) : v ? [v] : []);
 const dateOnly = (d) => (d ? String(d).slice(0, 10) : '');
 
-/** services.json (+ any data/services/*.json), flattened and de-duplicated by service_ar + entity. Falls back to the sample. */
-export function loadServices() {
+/**
+ * All services: extracted from manual/*.md (store) + any drop-in JSON (data/services.json, data/services/*.json),
+ * de-duplicated by service_ar + entity (drop-in JSON wins). Falls back to the PACI sample when there are none.
+ */
+export async function loadServices() {
+  const extracted = await load('extracted_services', []);
   const sources = [path.join(DATA, 'services.json')];
   const dir = path.join(DATA, 'services');
   if (fs.existsSync(dir)) {
     for (const f of fs.readdirSync(dir).sort()) if (f.endsWith('.json')) sources.push(path.join(dir, f));
   }
-  let all = sources.flatMap((f) => [readJSON(f, [])].flat(2)).filter((s) => s && typeof s === 'object');
+  let all = [...extracted, ...sources.flatMap((f) => [readJSON(f, [])].flat(2))].filter((s) => s && typeof s === 'object');
   if (!all.length) {
-    console.warn('[knowledge] no services.json yet; using services.sample.json');
+    console.warn('[knowledge] no services yet (manual/*.md or data/services.json); using services.sample.json');
     all = [readJSON(path.join(DATA, 'services.sample.json'), [])].flat(2);
   }
   const seen = new Map();
@@ -78,7 +82,7 @@ function postItem(p, entities) {
 }
 
 export async function buildKnowledge() {
-  const services = loadServices();
+  const services = await loadServices();
   const posts = await loadCleanPosts();
   const entities = entityByHandle();
   const items = [...services.map((s, i) => serviceItem(s, i + 1)), ...posts.map((p) => postItem(p, entities))];

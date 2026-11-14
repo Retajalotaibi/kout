@@ -1,10 +1,21 @@
 # manual/
 
-Hand-copied text for sites whose robots.txt disallows automated access (see `config/sites.json`, `mode: "manual"`).
+Text copied by hand from official websites (including sites whose robots.txt disallows automated access, see `config/sites.json`).
 
-One file per site, named as in `sites.json` (e.g. `paci.md`). Start every page section with:
+One file per entity (`paci.md`, `moi.md`, `manpower.md`, `moh.md`, `mohe.md`, `pama.md`, `other.md`). The first line sets the entity:
 
-=== <page URL> | copied <YYYY-MM-DD> ===
-<page text>
+    Entity: PACI
 
-Keep each file to about 5–10 pages.
+Then, for every page, a header line followed by the page text, copied exactly:
+
+    === <page URL> | copied <YYYY-MM-DD> ===
+    <page text>
+
+Optional per-page entity: `=== <URL> | copied <date> | MOI ===`. Text inside `<!-- -->` comments is ignored.
+
+Process with:
+
+    npm run extract:services            # only new or edited pages are sent to Claude
+    npm run extract:services -- --force # re-extract everything
+
+Each page is turned into structured services with `prompts/extract-services.md`, saved to the database (`extracted_services`) and merged into the chatbot's knowledge. A drop-in JSON array in `data/services.json` is merged too.
