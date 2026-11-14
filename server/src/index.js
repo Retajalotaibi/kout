@@ -6,6 +6,8 @@ import { loadLabels } from './lib/classify.js';
 import { loadKnowledge } from './lib/knowledge.js';
 import { storeStatus } from './lib/store.js';
 import { parseTweetsQuery, ENTITY_AR } from './lib/intent.js';
+import { summarizePosts } from './lib/summarize.js';
+import { enabledAccounts as allAccountsFor } from './lib/xSource.js';
 import { runPoll } from './lib/pipeline.js';
 
 const app = express();
@@ -88,7 +90,13 @@ app.post('/api/ask', async (req, res) => {
       text += ar ? ` (هذا كل ما هو محفوظ)` : ` (that's all we have saved)`;
     }
   }
-  res.json({ kind: 'tweets', text, posts: shown });
+  // AI summary of the shown tweets (FAST_MODEL, cached). Failure just means no summary.
+  const entityByHandle = Object.fromEntries(allAccountsFor().map((a) => [a.handle.toLowerCase(), a.entity]));
+  const { summary, cached } = await summarizePosts(message, shown, {
+    arabic: ar,
+    entityOf: (p) => entityByHandle[String(p.account).toLowerCase()] ?? p.account,
+  });
+  res.json({ kind: 'tweets', text, summary, summaryCached: cached, posts: shown });
 });
 
 app.get('/api/stats', async (_req, res) => {

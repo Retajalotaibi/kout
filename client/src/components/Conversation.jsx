@@ -60,7 +60,13 @@ export default function Conversation({ messages }) {
             {m.kind === 'poll' && <PollResult r={m.result} />}
             {m.kind === 'posts' && (
               <div className="space-y-3">
-                <p>{m.text ?? (m.posts.length ? `The ${m.posts.length} most recent stored posts:` : 'No posts stored yet.')}</p>
+                {m.summary && (
+                  <div className="rounded-xl bg-brand-50 px-4 py-3">
+                    <p className="mb-1 text-xs font-medium text-brand-800">AI summary · ملخص</p>
+                    <div className="whitespace-pre-wrap text-[15px] leading-relaxed text-ink">{m.summary}</div>
+                  </div>
+                )}
+                <p className={m.summary ? 'text-sm text-ink-soft' : ''}>{m.text ?? (m.posts.length ? `The ${m.posts.length} most recent stored posts:` : 'No posts stored yet.')}</p>
                 <div className="space-y-2">{m.posts.map((p) => <PostCard key={p.id} post={p} />)}</div>
               </div>
             )}

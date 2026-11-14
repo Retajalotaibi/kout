@@ -9,3 +9,4 @@ data/labels.json
 data/posts_clean.json
 data/knowledge.json
 data/answer_cache.json
+data/summary_cache.json

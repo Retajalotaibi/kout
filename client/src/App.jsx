@@ -44,7 +44,7 @@ export default function App() {
     push({ kind: 'pending', text: 'Looking it up…' });
     try {
       const r = await ask(text);
-      replacePending(r.kind === 'tweets' ? { kind: 'posts', text: r.text, posts: r.posts } : { kind: 'text', text: r.text });
+      replacePending(r.kind === 'tweets' ? { kind: 'posts', text: r.text, summary: r.summary, posts: r.posts } : { kind: 'text', text: r.text });
     } catch (err) {
       replacePending({ kind: 'error', text: err.message });
     } finally {
