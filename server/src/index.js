@@ -2,6 +2,7 @@ import path from 'node:path';
 import express from 'express';
 import { CONFIG, readJSON } from './lib/paths.js';
 import { CHAT_MODEL, FAST_MODEL, checkModel, llmSpend } from './lib/claude.js';
+import { budgetSnapshot } from './lib/xSource.js';
 
 const app = express();
 app.use(express.json({ limit: '100kb' }));
@@ -19,7 +20,7 @@ app.get('/api/health', async (_req, res) => {
 });
 
 app.get('/api/stats', (_req, res) => {
-  res.json({ llm: llmSpend() });
+  res.json({ llm: llmSpend(), x: budgetSnapshot() });
 });
 
 const PORT = Number(process.env.PORT) || 3001;
