@@ -4,7 +4,7 @@ import { health as fetchHealth } from '../api.js';
 const usd = (n, d = 2) => `$${(Number(n) || 0).toFixed(d)}`;
 
 function Dot({ ok }) {
-  return <span className={`inline-block h-2 w-2 rounded-full ${ok ? 'bg-emerald-400' : 'bg-red-500'}`} />;
+  return <span className={`inline-block h-2 w-2 rounded-full ${ok ? 'bg-accent-500' : 'bg-red-500'}`} />;
 }
 
 export default function Header({ stats }) {
@@ -24,17 +24,16 @@ export default function Header({ stats }) {
   const allOk = a && x && a.keySet && a.chat.ok && a.fast.ok && x.tokenSet;
 
   return (
-    <header className="flex items-center justify-between border-b-2 border-gold-500 bg-brand-600 px-4 py-2.5 text-white">
+    <header className="flex items-center justify-between border-b border-paper-line bg-white px-4 py-2">
       <div className="flex items-center gap-2">
-        {/* Drop the logo at client/public/logo.png; hidden until it exists. */}
-        <img src="/logo.png" alt="" className="h-8 w-auto" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-        <span className="font-serif text-lg">Kout <span className="text-gold-100">· كوت</span></span>
+        <img src="/logo.png" alt="Kout · كوت" className="h-9 w-auto" />
+        <span className="hidden text-xs text-ink-faint sm:inline">Kuwait government services, from official sources</span>
       </div>
 
       <div ref={ref} className="relative">
         <button
           onClick={() => setOpen((o) => !o)}
-          className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-brand-50 hover:bg-brand-700"
+          className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-ink-soft hover:bg-paper-muted"
         >
           {health && <Dot ok={Boolean(allOk)} />}
           {stats ? (

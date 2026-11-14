@@ -8,13 +8,13 @@ export default {
         serif: ['"Source Serif 4"', '"Noto Naskh Arabic"', 'Georgia', 'serif'],
       },
       colors: {
-        // White surface, navy primary, light gold accent.
+        // From the Kout logo: royal blue mark, sky-blue wordmark, on white.
         paper: { DEFAULT: '#ffffff', card: '#ffffff', line: '#e2e8f0', muted: '#f1f5f9' },
         ink: { DEFAULT: '#0f172a', soft: '#475569', faint: '#94a3b8' },
-        brand: { 50: '#eef3f9', 100: '#d6e2f0', 600: '#1e3a5f', 700: '#172e4c', 800: '#10223a' },
-        gold: { 50: '#fbf6e6', 100: '#f3e6b8', 500: '#c9a227', 700: '#8a6d12' },
+        brand: { 50: '#eef5fd', 100: '#d4e6fa', 600: '#1565c0', 700: '#0f50a0', 800: '#0b3d7a' },
+        accent: { 50: '#e8f5fd', 100: '#bfe3fa', 500: '#1e9be9', 700: '#0b6fb0' },
       },
-      boxShadow: { composer: '0 1px 2px rgba(15,23,42,0.05), 0 6px 20px rgba(30,58,95,0.08)', card: '0 1px 2px rgba(15,23,42,0.04)' },
+      boxShadow: { composer: '0 1px 2px rgba(15,23,42,0.05), 0 6px 20px rgba(21,101,192,0.10)', card: '0 1px 2px rgba(15,23,42,0.04)' },
     },
   },
   plugins: [],

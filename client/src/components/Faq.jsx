@@ -66,7 +66,7 @@ export default function Faq({ onAsk, onEligibility, onAnnouncements, disabled })
             disabled={disabled}
             className="group flex items-center gap-3 rounded-xl border border-paper-line bg-paper-card px-3 py-2.5 text-start shadow-card transition hover:border-brand-600 disabled:opacity-50"
           >
-            <span className="shrink-0 rounded-md bg-gold-50 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-gold-700">
+            <span className="shrink-0 rounded-md bg-accent-50 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-accent-700">
               {entity}
             </span>
             <span dir="auto" className="flex-1 text-sm text-ink group-hover:text-brand-700">

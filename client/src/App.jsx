@@ -80,7 +80,7 @@ export default function App() {
 
       {empty ? (
         <main className="flex flex-1 flex-col items-center overflow-y-auto px-4 pb-10 pt-8 sm:justify-center sm:pt-4">
-          <div className="mb-3 h-1 w-12 rounded-full bg-gold-500" />
+          <img src="/logo.png" alt="Kout · كوت" className="mb-5 h-24 w-auto sm:h-28" />
           <h1 className="mb-1 text-center font-serif text-3xl text-brand-800 sm:text-4xl">How can I help you today?</h1>
           <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
           <div className="w-full max-w-2xl">
