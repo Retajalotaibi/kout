@@ -50,6 +50,7 @@ function serviceItem(s, n) {
   const fields = [
     ['Channels', list(s.channels)], ['Conditions', list(s.conditions)], ['Documents', list(s.documents)],
     ['Fees', list(s.fees)], ['Exemptions', list(s.exemptions)], ['Steps', list(s.steps)],
+    ['Services offered', list(s.offered)],
   ];
   for (const [label, vals] of fields) if (vals.length) lines.push(`${label}: ${vals.join(' ; ')}`);
   if (list(s.unclear).length) lines.push(`Unclear: ${list(s.unclear).join(' ; ')}`);

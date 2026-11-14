@@ -16,18 +16,28 @@ const MIN_PAGE_CHARS = 20;
 const TOPICS = new Set(['civil_id', 'residency', 'traffic', 'work', 'health', 'education', 'other']);
 const LIST_FIELDS = ['channels', 'conditions', 'documents', 'exemptions', 'steps', 'unclear'];
 
-/** Split one manual file into pages: [{ url, copied, entity, text }]. */
+/**
+ * Split one manual file into pages: [{ url, copied, entity, list, text }].
+ * Header: === <URL> | copied <YYYY-MM-DD> [| <ENTITY>] [| list] ===
+ * "list" marks a page that is just a list of service names (stored as one entry, no Claude call).
+ */
 export function parsePages(fileText, defaultEntity) {
   const text = fileText.replace(/<!--[\s\S]*?-->/g, ''); // instructions live in comments
   const fileEntity = text.match(/^Entity:\s*(.+)$/m)?.[1]?.trim() || defaultEntity;
   const headers = [...text.matchAll(HEADER)];
   return headers
-    .map((h, i) => ({
-      url: h[1],
-      copied: h[2],
-      entity: (h[3] || fileEntity || '').trim(),
-      text: text.slice(h.index + h[0].length, headers[i + 1]?.index ?? text.length).trim(),
-    }))
+    .map((h, i) => {
+      const extras = (h[3] ?? '').split('|').map((x) => x.trim()).filter(Boolean);
+      const list = extras.some((x) => x.toLowerCase() === 'list');
+      const entity = extras.find((x) => x.toLowerCase() !== 'list');
+      return {
+        url: h[1],
+        copied: h[2],
+        entity: (entity || fileEntity || '').trim(),
+        list,
+        text: text.slice(h.index + h[0].length, headers[i + 1]?.index ?? text.length).trim(),
+      };
+    })
     .filter((p) => p.text.length >= MIN_PAGE_CHARS);
 }
 
@@ -38,6 +48,34 @@ function manualFiles() {
     .filter((f) => f.endsWith('.md') && f.toLowerCase() !== 'readme.md')
     .sort()
     .map((f) => path.join(MANUAL_DIR, f));
+}
+
+const hasUrl = (p) => /^https?:\/\//i.test(p.url);
+
+/** A "list" page becomes one entry whose offered[] holds the service names, copied as-is (no Claude). */
+function listEntry(page) {
+  const offered = page.text
+    .split('\n')
+    .map((l) => l.replace(/^[\s\d٠-٩.\-–)•*]+/, '').trim())
+    .filter((l) => l.length > 2);
+  return {
+    service_ar: `قائمة الخدمات الإلكترونية - ${page.entity}`,
+    service_en: `${page.entity} e-services list`,
+    entity: page.entity,
+    topic: 'other',
+    audience: null,
+    channels: [],
+    conditions: [],
+    documents: [],
+    fees: null,
+    exemptions: [],
+    steps: [],
+    offered,
+    apply_url: null,
+    source_url: page.url,
+    copied_on: page.copied,
+    unclear: ['This entry only lists service names from the page; details (documents, fees, steps) are not included.'],
+  };
 }
 
 function asList(v) {
@@ -65,7 +103,7 @@ function normalize(s, page) {
 export async function extractServices({ force = false } = {}) {
   const system = loadPrompt('extract-services');
   const cache = await load('extract_cache', {});
-  const stats = { pages: 0, extracted: 0, cached: 0, failed: 0 };
+  const stats = { pages: 0, extracted: 0, cached: 0, failed: 0, needsUrl: 0, lists: 0 };
   const services = [];
   const seenKeys = new Set();
 
@@ -73,6 +111,16 @@ export async function extractServices({ force = false } = {}) {
     const stem = path.basename(file, '.md');
     for (const page of parsePages(fs.readFileSync(file, 'utf-8'), stem.toUpperCase())) {
       stats.pages++;
+      if (!hasUrl(page)) {
+        stats.needsUrl++;
+        console.warn(`[services] skipped (no URL yet) ${stem}.md: ${page.text.split('\n')[0].slice(0, 60)}`);
+        continue;
+      }
+      if (page.list) {
+        stats.lists++;
+        services.push(listEntry(page));
+        continue;
+      }
       const input = `Entity: ${page.entity}\n\n=== ${page.url} | copied ${page.copied} ===\n${page.text}`;
       const key = crypto.createHash('sha1').update(system).update(input).digest('hex');
       seenKeys.add(key);
@@ -106,7 +154,8 @@ export async function extractServices({ force = false } = {}) {
   await save('extracted_services', unique);
 
   console.log(
-    `[services] pages=${stats.pages} extracted=${stats.extracted} cached=${stats.cached} failed=${stats.failed} services=${unique.length}`,
+    `[services] pages=${stats.pages} extracted=${stats.extracted} cached=${stats.cached} failed=${stats.failed} ` +
+      `lists=${stats.lists} needs_url=${stats.needsUrl} services=${unique.length}`,
   );
   return { ...stats, services: unique };
 }

@@ -5,11 +5,14 @@ import { extractServices } from '../lib/services.js';
 import { buildKnowledge } from '../lib/knowledge.js';
 import { closeStore } from '../lib/store.js';
 
-const { pages, extracted, cached, failed, services } = await extractServices({ force: process.argv.includes('--force') });
+const { pages, extracted, cached, failed, needsUrl, lists, services } = await extractServices({ force: process.argv.includes('--force') });
 if (!pages) console.log('No pages found. Paste pages into manual/*.md under a "=== <URL> | copied <YYYY-MM-DD> ===" header.');
 for (const s of services) {
   console.log(`  [${s.entity}] ${s.service_ar ?? ''}${s.service_en ? ` / ${s.service_en}` : ''} | fees: ${s.fees ?? '-'}`);
 }
 await buildKnowledge();
-console.log(`Done: ${pages} page(s), ${extracted} sent to Claude, ${cached} from cache, ${failed} failed.`);
+console.log(
+  `Done: ${pages} page(s): ${extracted} sent to Claude, ${cached} from cache, ${lists} list page(s), ` +
+    `${failed} failed, ${needsUrl} waiting for a URL (replace PASTE-URL-HERE).`,
+);
 await closeStore();
