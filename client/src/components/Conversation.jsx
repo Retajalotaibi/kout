@@ -16,6 +16,11 @@ function PollResult({ r }) {
           </>
         )}
       </p>
+      <p className="text-sm text-ink-soft">
+        {live ? <>Checked {r.accounts.map((a) => `@${a}`).join(', ')}.</> : <>Live X wasn't available, so offline fixtures were used.</>}
+        {r.newestStored && <> Newest post we have is from {new Date(r.newestStored).toLocaleString()}.</>}
+        {r.added === 0 && <> Use “Show stored posts” to see what's already saved.</>}
+      </p>
       <p className="text-xs text-ink-faint">
         Source:{' '}
         <span className={live ? 'text-brand-700' : 'text-amber-700'}>{live ? 'live X API' : 'offline fixtures'}</span>

@@ -1,6 +1,6 @@
 import { readJSON } from './paths.js';
-import { pollOnce, budgetSnapshot } from './xSource.js';
-import { appendPosts } from './posts.js';
+import { pollOnce, budgetSnapshot, enabledAccounts } from './xSource.js';
+import { appendPosts, POSTS_FILE } from './posts.js';
 import { classifyNew, LABELS_FILE } from './classify.js';
 import { buildKnowledge } from './knowledge.js';
 import { llmSpend } from './claude.js';
@@ -21,9 +21,13 @@ export async function runPoll() {
   const labels = readJSON(LABELS_FILE, {});
   const newPosts = fresh.map((p) => ({ ...p, label: labels[p.id] ?? null }));
 
+  const newestStored = readJSON(POSTS_FILE, []).reduce((max, p) => (String(p.date) > max ? String(p.date) : max), '');
+
   const x = budgetSnapshot();
   return {
     source,
+    accounts: source === 'x_api' ? enabledAccounts().map((a) => a.handle) : [],
+    newestStored: newestStored || null,
     fetched: items.length,
     added: fresh.length,
     kept: kept.length,
