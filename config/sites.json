@@ -1,0 +1,22 @@
+[
+  {
+    "entity": "MOI",
+    "url": "https://www.moi.gov.kw/main/",
+    "mode": "follow_links",
+    "keep": ["/main/eservices/residence", "/gdt"],
+    "note": "Homepage is only a menu; follow residency and traffic links. Skip .nsf links (application forms)."
+  },
+  {
+    "entity": "MOHE",
+    "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+    "mode": "follow_links",
+    "keep": ["ServiceDetails"],
+    "note": "Hub page listing services; detail pages hold the info."
+  },
+  { "entity": "MOHE", "url": "https://www.mohe.edu.kw/site/AR/MinisterialDecisions?PageID=4", "mode": "fetch", "note": "Ministerial decisions and regulations." },
+  { "entity": "MOHE", "url": "https://www.mohe.edu.kw/site/AR/FAQ?PageID=8", "mode": "fetch", "note": "FAQ." },
+  { "entity": "PACI", "url": "https://www.paci.gov.kw/applications-guide", "mode": "manual", "file": "manual/paci.md", "note": "robots.txt disallows automated access." },
+  { "entity": "PAMA", "url": "https://www.pama.gov.kw/services/services2", "mode": "manual", "file": "manual/pama.md", "note": "robots.txt disallows automated access." },
+  { "entity": "MOH",  "url": "https://www.moh.gov.kw/ar/Pages/ViewServices.aspx", "mode": "manual", "file": "manual/moh.md", "note": "robots.txt disallows automated access." },
+  { "entity": "PAM",  "url": "https://www.manpower.gov.kw/EServices.aspx", "mode": "manual", "file": "manual/manpower.md", "note": "robots.txt disallows automated access." }
+]

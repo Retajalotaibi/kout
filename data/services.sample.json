@@ -1,0 +1,29 @@
+[
+  {
+    "service_ar": "تجديد بطاقة كويتي",
+    "service_en": "Civil ID renewal – Kuwaiti citizens",
+    "entity": "PACI",
+    "topic": "civil_id",
+    "audience": "citizens",
+    "channels": [
+      "من خلال تطبيق سهل",
+      "الخدمات الإلكترونية المتوفرة على موقع الهيئة الإلكتروني",
+      "الحضور شخصيا أو حضور ولي الأمر أو من ينوب عنه قانوناً وذلك بموجب توكيل رسمي عام من وزارة العدل",
+      "التجديد الآلي في الهاتف 1889988",
+      "إرسال رسالة SMS على هاتف 1889988"
+    ],
+    "conditions": ["بشرط أن لا يكون هناك طلب لتغيير الصورة الشخصية"],
+    "documents": [
+      "لمن بلغ 18 سنة : الجنسية الأصلية وصورة عنها",
+      "عدد 2 صور شخصية (لكل فرد أتم 5 سنوات فأكثر)",
+      "صورة الجواز لمن أتم 5 سنوات بحيث يكون الجواز حديث الإصدار أو إثبات الجنسية مع صورة لمن أتم 5 سنوات وليس لديه جواز سفر حديث"
+    ],
+    "fees": "5 دنانير رسوم تدفع قيمتها عن طريق موقع الهيئة أو تطبيق سهل",
+    "exemptions": ["يعفى ذوي الإعاقة المتوسطة والشديدة من رسوم إصدار وتجديد البطاقة المدنية حال تقديمهم ما يثبت ذلك من الهيئة العامة لشئون ذوي الإعاقة تطبيقا لأحكام القانون رقم 8 لسنة 2010"],
+    "steps": [],
+    "apply_url": "https://services.paci.gov.kw/card/inquiry?lang=ar&serviceType=1",
+    "source_url": "https://www.paci.gov.kw/applications-guide",
+    "copied_on": "2026-11-14",
+    "unclear": ["It is not clear whether the condition about not changing the photo applies to all channels or only to phone/SMS renewal."]
+  }
+]

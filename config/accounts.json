@@ -1,0 +1,11 @@
+[
+  { "handle": "Moi_kuw",    "entity": "MOI",   "enabled": true,  "note": "Ministry of Interior (Arabic). Confirmed in news coverage 2026." },
+  { "handle": "EN_KUW_MOI", "entity": "MOI",   "enabled": false, "note": "MOI English account. Check it is still active before enabling." },
+  { "handle": "kuna_ar",    "entity": "KUNA",  "enabled": true,  "note": "Kuwait News Agency (Arabic). Confirmed 2026." },
+  { "handle": "kuna_en",    "entity": "KUNA",  "enabled": true,  "note": "Kuwait News Agency (English). Confirmed 2026." },
+  { "handle": "KuwaitiCM",  "entity": "Council of Ministers", "enabled": true, "note": "Seen tagged in KUNA posts. Verify check mark." },
+  { "handle": "mohe_kw",    "entity": "MOHE",  "enabled": false, "note": "Linked from mohe.edu.kw. Enable if higher education is a demo topic." },
+  { "handle": "TODO",       "entity": "PACI",  "enabled": false, "note": "Find the handle via the X link on paci.gov.kw." },
+  { "handle": "TODO",       "entity": "PAM",   "enabled": false, "note": "Public Authority for Manpower: find via its official website." },
+  { "handle": "TODO",       "entity": "MOH",   "enabled": false, "note": "Ministry of Health: find via moh.gov.kw." }
+]
