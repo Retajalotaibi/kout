@@ -14,7 +14,7 @@ Read `MVP-SPEC.md` for the full spec and `implementation-plan.md` for the build 
 - `@anthropic-ai/sdk` for all LLM calls (server side only)
 - X API v2 via native `fetch` (no X SDK)
 - `cheerio` for website loading
-- No database. JSON files in `data/`. In-memory BM25 search.
+- MongoDB Atlas (`mongodb` driver v6, Node 18-compatible) via `server/src/lib/store.js` for app data; every save is mirrored to `data/<name>.json`, which is also the offline fallback when `MONGODB_URI` is unset or unreachable. In-memory BM25 search.
 
 ## Commands
 - `npm install` — install all workspaces
@@ -28,7 +28,7 @@ Read `MVP-SPEC.md` for the full spec and `implementation-plan.md` for the build 
 2. **Never invent government data.** No placeholder fees, rules or posts in code or seed data. If sample data is needed, use the real PACI example in `data/services.sample.json`.
 3. **Respect robots.txt.** The website loader only fetches sites in `config/sites.json` with `mode: "fetch"` or `"follow_links"`. Sites with `mode: "manual"` are read from `manual/` files only.
 4. **X API budget guard is mandatory.** Port the logic in `reference/x_source.py` exactly: cached user IDs, per-account `since_id`, no `author_id` expansion, `exclude=retweets,replies`, local spend cap, fixture fallback.
-5. **Keep it MVP.** No auth, no database, no vector DB, no OCR, no deployment work unless the plan says so. Ask before adding dependencies not listed in the spec.
+5. **Keep it MVP.** No auth, no vector DB, no OCR, no deployment work unless the plan says so. Ask before adding dependencies not listed in the spec. (Decision 2026-11-14: the user chose a hosted MongoDB for persistence so data survives Render deploys; read/write app data only through `store.js`.)
 
 ## Docs
 - Use **Context7** for library docs (`@anthropic-ai/sdk`, express, react, vite, tailwind, cheerio) before writing code that uses them.

@@ -3,3 +3,9 @@ node_modules/
 dist/
 data/state.json
 data/llm_spend.json
+# runtime data (stored in MongoDB, mirrored here)
+data/posts.json
+data/labels.json
+data/posts_clean.json
+data/knowledge.json
+data/answer_cache.json

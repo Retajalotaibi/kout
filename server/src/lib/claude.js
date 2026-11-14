@@ -1,6 +1,6 @@
-import path from 'node:path';
 import Anthropic from '@anthropic-ai/sdk';
-import { DATA, readJSON, writeJSON } from './paths.js';
+import './paths.js';
+import { load, save } from './store.js';
 
 let client;
 function getClient() {
@@ -19,7 +19,6 @@ const PRICES = {
   'claude-haiku-5-5': [0.1, 0.5],
 };
 const FALLBACK_PRICE = [2, 10];
-const SPEND_FILE = path.join(DATA, 'llm_spend.json');
 const LLM_MAX_BUDGET_USD = () => parseFloat(process.env.LLM_MAX_BUDGET_USD) || 4;
 
 function costOf(model, usage) {
@@ -31,21 +30,21 @@ function costOf(model, usage) {
   return (input * inUsd + (usage.output_tokens ?? 0) * outUsd) / 1e6;
 }
 
-export function llmSpend() {
-  const s = readJSON(SPEND_FILE, {});
+export async function llmSpend() {
+  const s = await load('llm_spend', {});
   const spentUsd = s.spent_usd ?? 0;
   const capUsd = LLM_MAX_BUDGET_USD();
   return { spentUsd, capUsd, remainingUsd: Math.max(0, capUsd - spentUsd), calls: s.calls ?? 0 };
 }
 
-function recordSpend(model, usage) {
-  const s = readJSON(SPEND_FILE, {});
+async function recordSpend(model, usage) {
+  const s = await load('llm_spend', {});
   const cost = costOf(model, usage);
   const next = {
     spent_usd: Math.round(((s.spent_usd ?? 0) + cost) * 1e6) / 1e6,
     calls: (s.calls ?? 0) + 1,
   };
-  writeJSON(SPEND_FILE, next);
+  await save('llm_spend', next);
   console.log(
     `[llm] ${model} in=${usage.input_tokens} out=${usage.output_tokens} ` +
       `(thinking=${usage.output_tokens_details?.thinking_tokens ?? 0}) $${cost.toFixed(5)} total=$${next.spent_usd.toFixed(4)}`,
@@ -76,7 +75,7 @@ export function parseJSON(text, fallback) {
  * Refuses to call once the local spend cap (LLM_MAX_BUDGET_USD) is reached.
  */
 export async function callJSON(model, system, user, { maxTokens = 2048, effort = 'low', fallback = null } = {}) {
-  const { spentUsd, capUsd } = llmSpend();
+  const { spentUsd, capUsd } = await llmSpend();
   if (spentUsd >= capUsd) {
     console.error(`[callJSON] LLM budget cap reached ($${spentUsd.toFixed(4)} of $${capUsd}); skipping call.`);
     return fallback;
@@ -90,7 +89,7 @@ export async function callJSON(model, system, user, { maxTokens = 2048, effort =
       system,
       messages,
     });
-    recordSpend(model, res.usage);
+    await recordSpend(model, res.usage);
     if (res.stop_reason === 'refusal' || res.stop_reason === 'max_tokens') {
       console.warn(`[callJSON] ${model} stop_reason=${res.stop_reason}`);
     }

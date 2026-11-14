@@ -1,10 +1,10 @@
 import express from 'express';
-import { readJSON } from './lib/paths.js';
 import { CHAT_MODEL, FAST_MODEL, checkModel, llmSpend } from './lib/claude.js';
 import { budgetSnapshot, enabledAccounts } from './lib/xSource.js';
-import { POSTS_FILE } from './lib/posts.js';
-import { LABELS_FILE } from './lib/classify.js';
-import { KNOWLEDGE_FILE } from './lib/knowledge.js';
+import { loadPosts } from './lib/posts.js';
+import { loadLabels } from './lib/classify.js';
+import { loadKnowledge } from './lib/knowledge.js';
+import { storeStatus } from './lib/store.js';
 import { runPoll } from './lib/pipeline.js';
 
 const app = express();
@@ -12,18 +12,18 @@ app.use(express.json({ limit: '100kb' }));
 
 // Connectivity check. Makes no billed calls: Anthropic models lookup is free; X is config-only.
 app.get('/api/health', async (_req, res) => {
-  const [chat, fast] = await Promise.all([checkModel(CHAT_MODEL()), checkModel(FAST_MODEL())]);
+  const [chat, fast, store] = await Promise.all([checkModel(CHAT_MODEL()), checkModel(FAST_MODEL()), storeStatus()]);
   const accounts = enabledAccounts();
   res.json({
     anthropic: { keySet: Boolean(process.env.ANTHROPIC_API_KEY), chat, fast },
     x: { tokenSet: Boolean(process.env.X_BEARER_TOKEN), enabledAccounts: accounts.map((a) => a.handle) },
+    store,
   });
 });
 
 // Most recent ingested X posts (read from disk; no API call).
-app.get('/api/posts', (_req, res) => {
-  const posts = readJSON(POSTS_FILE, []);
-  const labels = readJSON(LABELS_FILE, {});
+app.get('/api/posts', async (_req, res) => {
+  const [posts, labels] = await Promise.all([loadPosts(), loadLabels()]);
   res.json(
     [...posts]
       .sort((a, b) => String(b.date).localeCompare(String(a.date)))
@@ -47,13 +47,13 @@ app.post('/api/poll', async (_req, res) => {
   }
 });
 
-app.get('/api/stats', (_req, res) => {
-  const knowledge = readJSON(KNOWLEDGE_FILE, []);
+app.get('/api/stats', async (_req, res) => {
+  const knowledge = await loadKnowledge();
   res.json({
     services: knowledge.filter((k) => k.sourceType === 'website').length,
     posts: knowledge.filter((k) => k.sourceType === 'x_post').length,
-    llm: llmSpend(),
-    x: budgetSnapshot(),
+    llm: await llmSpend(),
+    x: await budgetSnapshot(),
   });
 });
 

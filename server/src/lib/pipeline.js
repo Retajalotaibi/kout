@@ -1,17 +1,16 @@
-import { readJSON } from './paths.js';
 import { pollOnce, budgetSnapshot, enabledAccounts } from './xSource.js';
-import { appendPosts, POSTS_FILE } from './posts.js';
-import { classifyNew, LABELS_FILE } from './classify.js';
+import { appendPosts, loadPosts } from './posts.js';
+import { classifyNew, loadLabels } from './classify.js';
 import { buildKnowledge } from './knowledge.js';
 import { llmSpend } from './claude.js';
 
 /** One "check for new announcements": poll X -> append -> classify new -> rebuild knowledge. */
 export async function runPoll() {
   const { items, source } = await pollOnce();
-  const fresh = appendPosts(items);
+  const fresh = await appendPosts(items);
   const kept = await classifyNew();
-  const knowledge = buildKnowledge();
-  const labels = readJSON(LABELS_FILE, {});
+  const knowledge = await buildKnowledge();
+  const labels = await loadLabels();
   // Every newly fetched post with its label (kept or dropped) so the UI can show what happened.
   const newPosts = fresh.map((p) => ({ ...p, label: labels[p.id] ?? null }));
 
@@ -22,7 +21,7 @@ export async function runPoll() {
 
 
   // Latest stored post per checked account (or overall, for fixtures), so "no new posts" still shows something.
-  const stored = [...readJSON(POSTS_FILE, [])].sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const stored = [...(await loadPosts())].sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const newestStored = stored[0]?.date ?? '';
   const checked = source === 'x_api' ? enabledAccounts().map((a) => a.handle.toLowerCase()) : [];
   const latest = checked.length
@@ -30,7 +29,7 @@ export async function runPoll() {
     : stored.slice(0, 1);
   const latestPosts = latest.map((p) => ({ ...p, label: labels[p.id] ?? null }));
 
-  const x = budgetSnapshot();
+  const x = await budgetSnapshot();
   return {
     source,
     accounts: source === 'x_api' ? enabledAccounts().map((a) => a.handle) : [],
@@ -41,7 +40,7 @@ export async function runPoll() {
     spentUsd: x.spentUsd,
     remainingUsd: x.remainingUsd,
     capUsd: x.capUsd,
-    llm: llmSpend(),
+    llm: await llmSpend(),
     newItems,
     newPosts,
     latestPosts,

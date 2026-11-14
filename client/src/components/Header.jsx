@@ -53,6 +53,11 @@ export default function Header({ stats }) {
                 <li className="flex items-center gap-2"><Dot ok={a.fast.ok} /> Fast model: {a.fast.model ?? a.fast.error}</li>
                 <li className="flex items-center gap-2"><Dot ok={x.tokenSet} /> X token {x.tokenSet ? 'set' : 'missing (fixtures used)'}</li>
                 <li className="flex items-center gap-2"><Dot ok={x.enabledAccounts.length > 0} /> X accounts: {x.enabledAccounts.join(', ') || 'none'}</li>
+                {health.store && (
+                  <li className="flex items-center gap-2">
+                    <Dot ok={health.store.backend === 'mongodb'} /> Database: {health.store.backend === 'mongodb' ? `MongoDB (${health.store.detail})` : `local files — ${health.store.detail}`}
+                  </li>
+                )}
               </ul>
             )}
             {stats && (

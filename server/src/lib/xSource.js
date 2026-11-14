@@ -11,7 +11,8 @@
 //   - Budget running out during ID resolution falls back to fixtures instead of throwing.
 //   - If every account request fails (e.g. offline), falls back to fixtures.
 import path from 'node:path';
-import { CONFIG, DATA, readJSON, writeJSON } from './paths.js';
+import { CONFIG, DATA, readJSON } from './paths.js';
+import { load, save } from './store.js';
 
 const API = 'https://api.x.com/2';
 const num = (v, d) => (Number.isFinite(parseFloat(v)) ? parseFloat(v) : d);
@@ -22,7 +23,6 @@ const MAX_BUDGET_USD = () => num(process.env.X_MAX_BUDGET_USD, 3);
 const FIRST_RUN_POSTS_PER_ACCOUNT = 10;
 const POLL_POSTS_PER_ACCOUNT = 20;
 
-export const STATE_FILE = path.join(DATA, 'state.json');
 const FIXTURE_FILE = path.join(DATA, 'fixtures.json');
 const ACCOUNTS_FILE = path.join(CONFIG, 'accounts.json');
 
@@ -33,8 +33,8 @@ export function makeItem(id, account, date, text, lang, images, links) {
 }
 
 // ---------------------------------------------------------------- state + budget
-export function loadState() {
-  const s = readJSON(STATE_FILE, {});
+export async function loadState() {
+  const s = await load('state', {});
   return {
     user_ids: s.user_ids ?? {},   // lowercased username -> { id, username }
     since_ids: s.since_ids ?? {}, // lowercased username -> newest id
@@ -43,8 +43,8 @@ export function loadState() {
   };
 }
 
-function saveState(state) {
-  writeJSON(STATE_FILE, state);
+async function saveState(state) {
+  await save('state', state);
 }
 
 export class BudgetGuard {
@@ -63,8 +63,8 @@ export class BudgetGuard {
   }
 }
 
-export function budgetSnapshot() {
-  const state = loadState();
+export async function budgetSnapshot() {
+  const state = await loadState();
   const b = new BudgetGuard(state, MAX_BUDGET_USD());
   return { spentUsd: state.spent_usd, remainingUsd: Math.round(b.remaining * 10000) / 10000, capUsd: b.cap, lastPoll: state.last_poll };
 }
@@ -186,7 +186,7 @@ function fixtureItems() {
 // ---------------------------------------------------------------- entry point
 /** One poll. Returns { items, source }. Call from the admin button, never a tight loop. */
 export async function pollOnce() {
-  const state = loadState();
+  const state = await loadState();
   const budget = new BudgetGuard(state, MAX_BUDGET_USD());
   const token = process.env.X_BEARER_TOKEN;
   const accounts = enabledAccounts().map((a) => a.handle);
@@ -207,7 +207,7 @@ export async function pollOnce() {
     if (source === 'fixtures') items = fixtureItems();
   } finally {
     state.last_poll = new Date().toISOString();
-    saveState(state);
+    await saveState(state);
   }
 
   console.log(`[x] source=${source} items=${items.length} est_spent=$${state.spent_usd.toFixed(3)} remaining=$${budget.remaining.toFixed(3)}`);

@@ -1,9 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { CONFIG, DATA, readJSON, writeJSON } from './paths.js';
-import { CLEAN_FILE } from './classify.js';
-
-export const KNOWLEDGE_FILE = path.join(DATA, 'knowledge.json');
+import { CONFIG, DATA, readJSON } from './paths.js';
+import { loadCleanPosts } from './classify.js';
+import { load, save } from './store.js';
 
 const list = (v) => (Array.isArray(v) ? v.filter((x) => x != null && String(x).trim()) : v ? [v] : []);
 const dateOnly = (d) => (d ? String(d).slice(0, 10) : '');
@@ -78,17 +77,17 @@ function postItem(p, entities) {
   };
 }
 
-export function buildKnowledge() {
+export async function buildKnowledge() {
   const services = loadServices();
-  const posts = readJSON(CLEAN_FILE, []);
+  const posts = await loadCleanPosts();
   const entities = entityByHandle();
   const items = [...services.map((s, i) => serviceItem(s, i + 1)), ...posts.map((p) => postItem(p, entities))];
-  writeJSON(KNOWLEDGE_FILE, items);
-  console.log(`[knowledge] services=${services.length} posts=${posts.length} -> ${KNOWLEDGE_FILE}`);
+  await save('knowledge', items);
+  console.log(`[knowledge] services=${services.length} posts=${posts.length} -> ${items.length} items`);
   return items;
 }
 
-export function loadKnowledge() {
-  const items = readJSON(KNOWLEDGE_FILE, null);
+export async function loadKnowledge() {
+  const items = await load('knowledge', null);
   return Array.isArray(items) ? items : buildKnowledge();
 }

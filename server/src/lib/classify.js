@@ -1,10 +1,11 @@
-import path from 'node:path';
-import { DATA, readJSON, writeJSON } from './paths.js';
 import { callJSON, FAST_MODEL } from './claude.js';
 import { loadPrompt } from './prompts.js';
-import { POSTS_FILE } from './posts.js';
-export const LABELS_FILE = path.join(DATA, 'labels.json'); // id -> label, for every classified post (incl. not_relevant)
-export const CLEAN_FILE = path.join(DATA, 'posts_clean.json');
+import { loadPosts } from './posts.js';
+import { load, save } from './store.js';
+
+// labels: id -> label, for every classified post (incl. not_relevant), so nothing is classified twice.
+export const loadLabels = () => load('labels', {});
+export const loadCleanPosts = () => load('posts_clean', []);
 
 const CATEGORIES = new Set(['rule', 'procedure', 'clarification', 'not_relevant']);
 const TOPICS = new Set(['civil_id', 'residency', 'traffic', 'work', 'health', 'education', 'other']);
@@ -36,17 +37,17 @@ export async function classifyPosts(posts) {
 
 /** Classify every post in posts.json that has no label yet; rewrite posts_clean.json. Returns newly kept posts. */
 export async function classifyNew() {
-  const posts = readJSON(POSTS_FILE, []);
-  const labels = readJSON(LABELS_FILE, {});
+  const posts = await loadPosts();
+  const labels = await loadLabels();
   const todo = posts.filter((p) => !labels[p.id]);
   const fresh = todo.length ? await classifyPosts(todo) : {};
   Object.assign(labels, fresh);
-  writeJSON(LABELS_FILE, labels);
+  if (Object.keys(fresh).length) await save('labels', labels);
 
   const clean = posts
     .filter((p) => labels[p.id] && labels[p.id].category !== 'not_relevant')
     .map((p) => ({ ...p, ...labels[p.id] }));
-  writeJSON(CLEAN_FILE, clean);
+  await save('posts_clean', clean);
 
   const newlyKept = clean.filter((p) => fresh[p.id]);
   console.log(`[classify] labelled=${Object.keys(fresh).length}/${todo.length} kept_new=${newlyKept.length} clean_total=${clean.length}`);

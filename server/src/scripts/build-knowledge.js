@@ -1,3 +1,5 @@
 import { buildKnowledge } from '../lib/knowledge.js';
+import { closeStore } from '../lib/store.js';
 
-buildKnowledge();
+await buildKnowledge();
+await closeStore();
