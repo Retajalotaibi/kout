@@ -131,7 +131,7 @@ export default function Eligibility() {
   return (
     <div className="space-y-4">
       <div>
-        <p className="font-medium text-ink">Eligibility checker · فاحص الأهلية</p>
+        <p className="font-medium text-ink">Eligibility checker · فاحص الاستحقاقية</p>
         <p className="text-sm text-ink-soft">
           Enter your civil ID to see which official services you meet the age and nationality rules for.
           <span dir="rtl" className="block">أدخل رقمك المدني لمعرفة الخدمات التي تستوفي شروط العمر والجنسية فيها.</span>
