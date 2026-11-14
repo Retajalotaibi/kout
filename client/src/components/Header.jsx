@@ -1,10 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { health as fetchHealth } from '../api.js';
+import { useEffect, useRef, useState } from "react";
+import { health as fetchHealth } from "../api.js";
 
 const usd = (n, d = 2) => `$${(Number(n) || 0).toFixed(d)}`;
 
 function Dot({ ok }) {
-  return <span className={`inline-block h-2 w-2 rounded-full ${ok ? 'bg-accent-500' : 'bg-red-500'}`} />;
+  return (
+    <span
+      className={`inline-block h-2 w-2 rounded-full ${ok ? "bg-accent-500" : "bg-red-500"}`}
+    />
+  );
 }
 
 export default function Header({ stats }) {
@@ -12,11 +16,17 @@ export default function Header({ stats }) {
   const [health, setHealth] = useState(null);
   const ref = useRef(null);
 
-  useEffect(() => { fetchHealth().then(setHealth).catch(() => setHealth({ error: true })); }, []);
   useEffect(() => {
-    const close = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener('mousedown', close);
-    return () => document.removeEventListener('mousedown', close);
+    fetchHealth()
+      .then(setHealth)
+      .catch(() => setHealth({ error: true }));
+  }, []);
+  useEffect(() => {
+    const close = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
   }, []);
 
   const a = health?.anthropic;
@@ -27,7 +37,9 @@ export default function Header({ stats }) {
     <header className="flex items-center justify-between border-b border-paper-line bg-white px-4 py-2">
       <div className="flex items-center gap-2">
         <img src="/logo.png" alt="Kout · كوت" className="h-9 w-auto" />
-        <span className="hidden text-xs text-ink-faint sm:inline">Kuwait government services, from official sources</span>
+        <span className="hidden text-xs text-ink-faint sm:inline">
+          Kuwait government services, from official sources
+        </span>
       </div>
 
       <div ref={ref} className="relative">
@@ -36,37 +48,58 @@ export default function Header({ stats }) {
           className="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-ink-soft hover:bg-paper-muted"
         >
           {health && <Dot ok={Boolean(allOk)} />}
-          {stats ? (
-            <span>
-              API spend: Claude {usd(stats.llm.spentUsd, 3)} of {usd(stats.llm.capUsd)} · X {usd(stats.x.spentUsd, 3)} of {usd(stats.x.capUsd)}
-            </span>
-          ) : (
-            <span>Status</span>
-          )}
+          {stats ? <span></span> : <span>Status</span>}
         </button>
 
         {open && (
           <div className="absolute end-0 z-10 mt-1 w-72 rounded-xl border border-paper-line bg-paper-card p-3 text-xs text-ink shadow-composer">
             {!health && <p className="text-ink-faint">Checking…</p>}
-            {health?.error && <p className="text-red-600">Server not reachable.</p>}
+            {health?.error && (
+              <p className="text-red-600">Server not reachable.</p>
+            )}
             {a && x && (
               <ul className="space-y-1.5">
-                <li className="flex items-center gap-2"><Dot ok={a.keySet} /> Anthropic key {a.keySet ? 'set' : 'missing'}</li>
-                <li className="flex items-center gap-2"><Dot ok={a.chat.ok} /> Chat model: {a.chat.model ?? a.chat.error}</li>
-                <li className="flex items-center gap-2"><Dot ok={a.fast.ok} /> Fast model: {a.fast.model ?? a.fast.error}</li>
-                <li className="flex items-center gap-2"><Dot ok={x.tokenSet} /> X token {x.tokenSet ? 'set' : 'missing (fixtures used)'}</li>
-                <li className="flex items-center gap-2"><Dot ok={x.enabledAccounts.length > 0} /> X accounts: {x.enabledAccounts.join(', ') || 'none'}</li>
+                <li className="flex items-center gap-2">
+                  <Dot ok={a.keySet} /> Anthropic key{" "}
+                  {a.keySet ? "set" : "missing"}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Dot ok={a.chat.ok} /> Chat model:{" "}
+                  {a.chat.model ?? a.chat.error}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Dot ok={a.fast.ok} /> Fast model:{" "}
+                  {a.fast.model ?? a.fast.error}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Dot ok={x.tokenSet} /> X token{" "}
+                  {x.tokenSet ? "set" : "missing (fixtures used)"}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Dot ok={x.enabledAccounts.length > 0} /> X accounts:{" "}
+                  {x.enabledAccounts.join(", ") || "none"}
+                </li>
                 {health.store && (
                   <li className="flex items-center gap-2">
-                    <Dot ok={health.store.backend === 'mongodb'} /> Database: {health.store.backend === 'mongodb' ? `MongoDB (${health.store.detail})` : `local files — ${health.store.detail}`}
+                    <Dot ok={health.store.backend === "mongodb"} /> Database:{" "}
+                    {health.store.backend === "mongodb"
+                      ? `MongoDB (${health.store.detail})`
+                      : `local files — ${health.store.detail}`}
                   </li>
                 )}
               </ul>
             )}
             {stats && (
               <p className="mt-2 border-t border-paper-line pt-2 text-ink-faint">
-                Knowledge: {stats.services} services · {stats.posts} posts · {stats.llm.calls} Claude calls
-                {stats.x.lastPoll && <> · last X check {new Date(stats.x.lastPoll).toLocaleTimeString()}</>}
+                Knowledge: {stats.services} services · {stats.posts} posts ·{" "}
+                {stats.llm.calls} Claude calls
+                {stats.x.lastPoll && (
+                  <>
+                    {" "}
+                    · last X check{" "}
+                    {new Date(stats.x.lastPoll).toLocaleTimeString()}
+                  </>
+                )}
               </p>
             )}
           </div>
