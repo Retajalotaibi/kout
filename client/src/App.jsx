@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
 import Composer from './components/Composer.jsx';
 import Conversation from './components/Conversation.jsx';
+import Faq from './components/Faq.jsx';
 import { ask, poll, stats as fetchStats } from './api.js';
 import { speak, stopSpeaking } from './lib/speech.js';
 
@@ -64,11 +65,13 @@ export default function App() {
   }
 
   const empty = messages.length === 0;
+  const openEligibility = () => push({ kind: 'eligibility' });
+  // Compact shortcuts above the composer once a conversation has started.
   const actions = [
-    { label: 'Check my eligibility · تحقق من استحقاقيتي', onClick: () => push({ kind: 'eligibility' }) },
+    { label: 'Check my eligibility · تحقق من استحقاقيتي', onClick: openEligibility },
     { label: 'Check for new announcements', onClick: checkAnnouncements },
-    { label: 'Show the latest 4 tweets', onClick: () => send('Show the latest 4 tweets') },
-    { label: 'آخر تغريدة مفيدة', onClick: () => send('آخر تغريدة مفيدة') },
+    { label: 'كم رسوم تجديد البطاقة المدنية؟', onClick: () => send('كم رسوم تجديد البطاقة المدنية؟') },
+    { label: 'Taxi permit requirements', onClick: () => send('What are the requirements for a taxi permit?') },
   ];
 
   return (
@@ -76,24 +79,13 @@ export default function App() {
       <Header stats={stats} />
 
       {empty ? (
-        <main className="flex flex-1 flex-col items-center justify-center px-4 pb-24">
-          <h1 className="mb-1 text-center font-serif text-3xl text-ink sm:text-4xl">How can I help you today?</h1>
+        <main className="flex flex-1 flex-col items-center overflow-y-auto px-4 pb-10 pt-8 sm:justify-center sm:pt-4">
+          <div className="mb-3 h-1 w-12 rounded-full bg-gold-500" />
+          <h1 className="mb-1 text-center font-serif text-3xl text-brand-800 sm:text-4xl">How can I help you today?</h1>
           <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
           <div className="w-full max-w-2xl">
             <Composer disabled={busy} onSend={send} />
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {actions.map((a) => (
-                <button
-                  key={a.label}
-                  dir="auto"
-                  onClick={a.onClick}
-                  disabled={busy}
-                  className="rounded-lg border border-paper-line bg-paper-card px-3 py-1.5 text-sm text-ink-soft hover:border-ink-faint hover:text-ink disabled:opacity-50"
-                >
-                  {a.label}
-                </button>
-              ))}
-            </div>
+            <Faq onAsk={send} onEligibility={openEligibility} onAnnouncements={checkAnnouncements} disabled={busy} />
           </div>
         </main>
       ) : (
@@ -112,7 +104,8 @@ export default function App() {
                     key={a.label}
                     onClick={a.onClick}
                     disabled={busy}
-                    className="rounded-lg border border-paper-line bg-paper-card px-2.5 py-1 text-xs text-ink-soft hover:border-ink-faint hover:text-ink disabled:opacity-50"
+                    dir="auto"
+                    className="rounded-lg border border-paper-line bg-paper-card px-2.5 py-1 text-xs text-ink-soft hover:border-brand-600 hover:text-brand-700 disabled:opacity-50"
                   >
                     {a.label}
                   </button>
