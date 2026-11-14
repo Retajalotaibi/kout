@@ -1,0 +1,421 @@
+{
+  "800a4f0c67:410a247394:-:كم رسوم تجديد البطاقه المدنيه": {
+    "value": {
+      "answer": "رسوم تجديد بطاقة كويتي (للكويتيين ممن بلغ 18 سنة) هي **5 دنانير**، تُدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\n- يُعفى ذوو الإعاقة المتوسطة والشديدة من رسوم إصدار وتجديد البطاقة المدنية إذا قدموا ما يثبت ذلك من الهيئة العامة لشئون ذوي الإعاقة (القانون رقم 8 لسنة 2010).\n- المصادر المتوفرة تغطي فقط تجديد بطاقة الكويتي، ولا تذكر رسوم تجديد البطاقة المدنية لغير الكويتيين.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:49",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "تجديد بطاقة كويتي / Kuwaiti ID card renewal"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "كم رسوم تجديد البطاقة المدنية؟",
+    "at": "2026-11-14T11:16:10.554Z"
+  },
+  "800a4f0c67:410a247394:-:how much does it cost to renew my civil id": {
+    "value": {
+      "answer": "For a **Kuwaiti ID card renewal** (for those aged 18 and over), the fee is **5 دنانير**. It is paid through the PACI website or the Sahel app.\n\n- Persons with moderate or severe disability are exempt from civil ID issuance and renewal fees if they provide proof from the Public Authority for Disability Affairs (Law No. 8 of 2010).\n- The renewal condition is that there is no request to change the personal photo.\n\nThe sources do not give a renewal fee for non-Kuwaitis. If you meant a lost or damaged replacement, the fee for Kuwaitis is **20 دينار**.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:49",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "تجديد بطاقة كويتي / Kuwaiti ID card renewal"
+        },
+        {
+          "id": "svc:51",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "بدل فاقد / تالف (كويتي) / Replacement of lost or damaged civil ID (Kuwaiti)"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "How much does it cost to renew my civil ID?",
+    "at": "2026-11-14T11:16:29.261Z"
+  },
+  "800a4f0c67:410a247394:-:what is the weather in kuwait tomorrow": {
+    "value": {
+      "answer": "The sources provided do not contain any weather information, so I can't tell you tomorrow's weather in Kuwait. The Kuwait Meteorological Department (under the Directorate General of Civil Aviation) is the entity most likely to have this information.",
+      "status": "not_found",
+      "sources": [],
+      "change_note": null
+    },
+    "question": "What is the weather in Kuwait tomorrow?",
+    "at": "2026-11-14T11:16:46.219Z"
+  },
+  "800a4f0c67:410a247394:-:شلون اجدد بطاقتي المدنيه": {
+    "value": {
+      "answer": "**تجديد البطاقة المدنية (كويتي، لمن بلغ 18 سنة)** حسب موقع الهيئة العامة للمعلومات المدنية:\n\n**طرق التجديد:**\n- تطبيق سهل\n- الخدمات الإلكترونية على موقع الهيئة www.paci.gov.kw\n- الحضور شخصيا\n- حضور ولي الأمر أو من ينوب عنه قانوناً بتوكيل رسمي عام من وزارة العدل\n- التجديد الآلي على الهاتف 1889988\n- إرسال رسالة SMS على الهاتف 1889988\n\n**الشرط:** ألا يكون هناك طلب لتغيير الصورة الشخصية. (الصفحة لا توضح تماماً إن كان هذا الشرط ينطبق على كل الطرق أو على التجديد الآلي فقط.)\n\n**المستندات:**\n- الجنسية الأصلية وصورة عنها\n- عدد 2 صور شخصية (لكل فرد أتم 5 سنوات فأكثر)\n- صورة الجواز لمن أتم 5 سنوات (جواز حديث الإصدار)، أو إثبات الجنسية مع صورة لمن ليس لديه جواز سفر حديث\n\n**الرسوم:** 5 دنانير تدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\n**إعفاء:** يعفى ذوو الإعاقة المتوسطة والشديدة من الرسوم عند تقديم ما يثبت ذلك من الهيئة العامة لشئون ذوي الإعاقة (القانون رقم 8 لسنة 2010).",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:49",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "تجديد بطاقة كويتي / Kuwaiti ID card renewal"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "شلون اجدد بطاقتي المدنيه",
+    "at": "2026-11-14T11:19:02.715Z"
+  },
+  "800a4f0c67:410a247394:-:هل استطيع التقديم علي بعثه خارجيه": {
+    "value": {
+      "answer": "يمكنك التقديم إذا استوفيت الشروط. المصدر المتوفر يخص **برنامج البعثات المتميزة 2027/2026** (وهناك أيضاً بعثات أبناء الدبلوماسيين وبعثات الهيئة العامة لشؤون ذوي الإعاقة وبرنامج الطب البشري المتقدم لحملة البكالوريوس، ولكل منها شروطه). أهم شروط البعثات المتميزة:\n- أن تكون كويتي الجنسية.\n- ألا يقل السن عن (16) عاماً وألا يزيد عن (23) عاماً.\n- أن تكون حاصلاً على شهادة الثانوية العامة، وألا تتجاوز صلاحية الشهادة عامين دراسيين من تاريخ التخرج.\n- ألا تكون حاصلاً على البكالوريوس.\n- ألا تكون موظفاً في أي جهة من جهات الدولة.\n- ألا تجمع بين البعثة والمنحة الدراسية في آن واحد.\n- ألا يكون لديك بعثة خارجية أو منحة انتهت بالفصل أو الانسحاب بعد الالتحاق في بلد الإيفاد.\n- أن تحقق النسبة المئوية المطلوبة في خطة البعثات السنوية (لم تُذكر قيمتها في الصفحة، وللتخصصات الطبية لا تقل عن 95%).\n- أن يكون لديك قبول أكاديمي مصدق من المكتب الثقافي.\n- الآيلتز الأكاديمي بدرجة كلية لا تقل عن (5.5) ولا تقل عن (5.5) بكافة البنود، أو التوفل بدرجة لا تقل عن (47).\n\n**طريقة التقديم:** عبر نظام التسجيل الإلكتروني في موقع وزارة التعليم العالي https://www.mohe.edu.kw بالمصادقة عبر تطبيق هويتي، بعد انتهاء العام الدراسي 2025/2026، مع إرفاق كافة المستندات (الطلبات الناقصة تُستبعد).",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:4",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "البعثات المتميزة 2027/2026 - إرشادات التسجيل لبرنامج البعثات المتميزة للعام الجامعي 2027/2026 / Distinguished Scholarships Programme 2027/2026 - Registration Guidelines"
+        },
+        {
+          "id": "svc:5",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "بعثات ابناء الدبلوماسيين 2027/2026 / Diplomats' Children Scholarship Plan 2026/2027"
+        },
+        {
+          "id": "svc:8",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "بعثات الهيئة العامة لشؤون ذوي الإعاقة 2027/2026 / Scholarships of the Public Authority for Persons with Disabilities 2027/2026"
+        },
+        {
+          "id": "svc:6",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "إيفاد حملة الشهادة الجامعية الأولى لبرنامج الطب البشري المتقدم 2027/2026 / Sponsored admission of first-degree (bachelor's) holders to the Advanced Graduate Entry Medicine (MBBS) program 2027/2026"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "هل استطيع التقديم على بعثه خارجيه؟",
+    "at": "2026-11-14T11:47:24.659Z"
+  },
+  "800a4f0c67:410a247394:2cca84f4b3:هل استطيع امتلاك سياره": {
+    "value": {
+      "answer": "المصادر المتوفرة لا تذكر شروط أهلية تملّك مركبة، مثل العمر أو الجنسية أو الإقامة، لذلك لا أستطيع الجزم. الجهة الأنسب للسؤال هي **وزارة الداخلية (الإدارة العامة للمرور)**.\n\nما تذكره المصادر عن **ترخيص المركبة** (لمالك المركبة أو من ينوب عنه):\n- يصدر الترخيص باسم المالك الحقيقي بعد استيفاء جميع الشروط.\n- مدة الترخيص للمركبة والدراجات الجديدة ثلاث سنوات.\n- بعد انتهاء الترخيص يجب تقديم طلب التجديد خلال 10 أيام من انتهائه، ويجدد لمدة سنة واحدة فقط.\n- المستندات المطلوبة:\n  - ما يثبت شخصية المالك ومحل إقامته.\n  - ما يثبت ملكية المركبة للشخص.\n  - النموذج الخاص بطلب الفحص الفني.\n  - المستند الخاص بتعيين ممثل قانوني للمالك.\n  - وثيقة تأمين من حوادث المركبات.\n\nالصفحة لا تذكر الرسوم ولا قنوات التقديم.",
+      "status": "not_found",
+      "sources": [],
+      "change_note": null
+    },
+    "question": "هل استطيع امتلاك سياره ؟",
+    "at": "2026-11-14T11:49:20.862Z"
+  },
+  "800a4f0c67:410a247394:aff14277e6:هاي": {
+    "value": {
+      "answer": "أهلاً بك! كيف أقدر أساعدك؟\n\n**تصحيح مهم لإجاباتي السابقة:**\n- ذكرتُ بعثات أخرى (أبناء الدبلوماسيين وذوي الإعاقة) غير موجودة في المصادر المتوفرة. الموجود فقط **البعثات المتميزة 2027/2026** و**برنامج الطب البشري المتقدم لحملة البكالوريوس**.\n- تفاصيل ترخيص المركبة التي ذكرتها (مدة الثلاث سنوات، التجديد خلال 10 أيام، قائمة المستندات) **ليست موجودة في المصادر**، فأرجو عدم الاعتماد عليها. للتأكد، راجع **وزارة الداخلية (الإدارة العامة للمرور)**.",
+      "status": "answered",
+      "sources": [],
+      "change_note": null
+    },
+    "question": "‏هاي",
+    "at": "2026-11-14T11:53:58.952Z"
+  },
+  "800a4f0c67:410a247394:-:ما هي شروط رخصه قياده الدراجه": {
+    "value": {
+      "answer": "**الشرط الوحيد المذكور:** أن لا يقل العمر عن (18) سنة.\n\n**المستندات المطلوبة:**\n- جواز السفر أو البطاقة المدنية وصور عنها.\n- فصيلة الدم + الكشف الطبي.\n- عدد 2 صور شخصية (4x6 خلفية زرقاء).\n\n**الخطوات:**\n- طباعة طلب الحصول على رخصة سوق دراجة نارية.\n- بعد الموافقة على الطلب يتم توقيع نموذج شهادة اللياقة الطبية.\n- بعد إنهاء الكشف الطبي وتحديد فصيلة الدم يتم استخراج تصريح تعليم القيادة من قسم الرخص.\n- يتم تحديد موعد للاختبار عبر موقع وزارة الداخلية.\n- بعد النجاح في الاختبار النظري والعملي تستكمل الإجراءات في قسم الرخص.\n\n**ملاحظة:** الصفحة لا تحدد من يحق له التقديم ولا تذكر أي رسوم، ولا توضح أين يُقدَّم الطلب المطبوع.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:15",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "رخصة قيادة دراجة / Motorcycle driving license"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما هي شروط رخصة قيادة الدراجة؟",
+    "at": "2026-11-14T11:58:23.464Z"
+  },
+  "800a4f0c67:410a247394:-:what are the conditions for the mohe excellence scholarship": {
+    "value": {
+      "answer": "The Distinguished Scholarships Programme (البعثات المتميزة) 2026/2027 is for graduates of public and private secondary education after the 2025/2026 school year. Key conditions:\n\n**General conditions**\n- Kuwaiti nationality.\n- Age not less than (16) and not more than (23) years.\n- Holds the general secondary certificate (Kuwaiti unified system, scientific or literary, or equivalent, with a Ministry of Education Private Education Department statement).\n- Certificate validity not more than two school years from graduation (2024/2025 to 2025/2026, and 1445/1446 to 1446/1447).\n- Does not hold a first university degree (bachelor's).\n- Has not had an external scholarship or grant that ended in dismissal or withdrawal after enrolment.\n- Has not had a scholarship from inside Kuwait or a bachelor's grant, unless the amount spent is refunded.\n- Does not combine a scholarship and a grant at the same time.\n- Is not an employee of any state entity.\n- Percentage not below the minimum required for the annual scholarship plan (the value is not stated on the page).\n- Final academic admission attested by the Cultural Office, in a distinguished major or an institution on the excellence lists recommended by the National Authority for Academic Accreditation and Quality Assurance in Education.\n- For a major not listed in the sending country, the student must meet the lowest percentage announced in the annual plan. Medical majors (medicine, dentistry, pharmacy) require not less than 95%.\n\n**Language test**\n- Academic IELTS: overall not less than (5.5) and not less than (5.5) in all bands, or TOEFL not less than (47), from a Ministry-approved centre inside Kuwait only.\n- Results from outside Kuwait may be accepted if taken at a centre approved by Cultural Offices abroad or Kuwaiti embassies, for students whose secondary certificate is from the same country.\n\n**Other**\n- Sponsorship starts from the semester/year in which the required documents were completed, not an earlier one.\n- The scholarship is cancelled if the student and guardian do not approve the financial and academic undertaking via the Sahel app within (60) days of the admission result announcement.\n- The page also sets specific requirements for English, American, IB-DP and Saudi secondary certificates.\n\n**Documents:** final secondary transcript, equivalency statement (for foreign secondary schools), final Cultural Office-attested admission, civil ID copies of student and guardian, passport copy, and original certified IELTS/TOEFL copy.\n\nNote: no fee is stated on the page.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:4",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "البعثات المتميزة 2027/2026 - إرشادات التسجيل لبرنامج البعثات المتميزة للعام الجامعي 2027/2026 / Distinguished Scholarships Programme 2027/2026 - Registration Guidelines"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "What are the conditions for the MOHE excellence scholarship?",
+    "at": "2026-11-14T11:58:52.792Z"
+  },
+  "800a4f0c67:410a247394:-:كيف احجز موعد الفحص الطبي قبل الزواج": {
+    "value": {
+      "answer": "لا تذكر المصادر المتاحة طريقة حجز موعد الفحص الطبي قبل الزواج، ولا قنوات الحجز، ولا الرسوم. الجهة الأقرب للإجابة هي **وزارة الصحة (MOH)**.\n\nما تذكره صفحة وزارة الصحة:\n- يجب على الطرفين الالتزام بالحضور في الموعد المحدد، وإلا يعتبر الموعد لاغياً في حال التخلف. والصفحة لا توضح من هما الطرفان المقصودان.\n- **للكويتي والمقيم داخل الكويت:** البطاقة المدنية فقط، وتكون غير منتهية الصلاحية.\n- **لغير المقيمين داخل الكويت:** جواز السفر أو الهوية الوطنية لمواطني دول مجلس التعاون الخليجي.\n- **لغير المقيمين من الوافدين:** جواز السفر وسمة دخول صالحة.\n- **لغير محددي الجنسية:** بطاقة اللجنة المركزية أو الضمان الصحي، غير منتهية الصلاحية.",
+      "status": "not_found",
+      "sources": [],
+      "change_note": null
+    },
+    "question": "كيف أحجز موعد الفحص الطبي قبل الزواج؟",
+    "at": "2026-11-14T11:59:16.744Z"
+  },
+  "800a4f0c67:410a247394:-:شلون اقدم بدل فاقد لبطاقتي المدنيه": {
+    "value": {
+      "answer": "الجواب مبني على خدمة **بدل فاقد / تالف (كويتي)** من الهيئة العامة للمعلومات المدنية، وهي للمواطنين الكويتيين فقط.\n\n**القنوات:** الحضور الشخصي، موقع الهيئة، تطبيق سهل. الصفحة لا تذكر خطوات مرقمة، وليس واضحاً هل موقع الهيئة وتطبيق سهل قناتا تقديم أم للدفع والتمثيل فقط.\n\n**الرسوم:** 20 دينار، تُدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\n**الشروط:**\n- حضور صاحب العلاقة أو من ينوب عنه بتوكيل رسمي عام من وزارة العدل أو من خلال تطبيق سهل.\n- حضور شخصي لمن أكمل 21 سنة.\n- أقل من 18 سنة: حضور ولي الأمر أو الحاضن في حالات الطلاق.\n- عند فقدان جميع الوثائق: كتاب من الإدارة العامة للجنسية بصورة شخصية حديثة.\n\n**المستندات:**\n- إثبات رسمي ساري المفعول (الجنسية الأصلية أو الجواز أو رخصة القيادة أو تطبيق هويتي).\n- 2 صور شخصية حديثة مطابقة للمواصفات (لكل فرد أتم 5 سنوات فأكثر).\n- أقل من 5 سنوات: شهادة الميلاد الأصلية وصورة عنها، أو إثبات جنسية بصورة حديثة.\n- أكثر من 5 سنوات: الجواز الأصلي أو إثبات الجنسية بصورة حديثة.\n\n**ملاحظة:** الصفحة لا تذكر رابط تقديم مباشر.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:51",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "بدل فاقد / تالف (كويتي) / Replacement of lost or damaged civil ID (Kuwaiti)"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "شلون اقدم بدل فاقد لبطاقتي المدنيه",
+    "at": "2026-11-14T12:23:34.626Z"
+  },
+  "800a4f0c67:410a247394:-:ما هي المستندات المطلوبه لبدل فاقد البطاقه المدنيه": {
+    "value": {
+      "answer": "المستندات المطلوبة لبدل فاقد / تالف للبطاقة المدنية (للكويتيين) حسب موقع الهيئة العامة للمعلومات المدنية:\n- **إثبات رسمي ساري المفعول**: الجنسية الأصلية أو الجواز أو رخصة القيادة أو تطبيق هويتي.\n- **عدد 2 صور شخصية حديثة** مطابقة للمواصفات (لكل فرد أتم 5 سنوات فأكثر).\n- **أقل من 5 سنوات**: شهادة الميلاد الأصلية وصورة عنها أو إثبات جنسية بصورة حديثة.\n- **أكثر من 5 سنوات**: الجواز الأصلي أو إثبات الجنسية بصورة حديثة.\n\n**شروط مهمة:**\n- حضور صاحب العلاقة أو من ينوب عنه بتوكيل رسمي عام من وزارة العدل أو من خلال تطبيق سهل.\n- لمن هم أقل من 18 سنة: حضور ولي الأمر أو الحاضن في حالات الطلاق.\n- في حالة فقدان جميع الوثائق: كتاب من الإدارة العامة للجنسية بصورة شخصية حديثة.\n- حضور شخصي لمن أكمل 21 سنة.\n\n**الرسوم:** 20 دينار تدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\nملاحظة: الصفحة لا توضح بشكل كامل قواعد المستندات لمن هم 5 سنوات فأكثر، وهذه المعلومات تخص الكويتيين فقط.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:51",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "بدل فاقد / تالف (كويتي) / Replacement of lost or damaged civil ID (Kuwaiti)"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما هي المستندات المطلوبة لبدل فاقد البطاقة المدنية؟",
+    "at": "2026-11-14T12:43:18.307Z"
+  },
+  "800a4f0c67:410a247394:-:what are the requirements for a taxi permit": {
+    "value": {
+      "answer": "The sources describe the **taxi driver permit** (تصريح سيارة أجرة) from MOI. There is also a separate on-demand taxi permit.\n\n**Taxi driver permit – conditions:**\n- Must be of Kuwaiti nationality\n- Must be full-time (متفرغ)\n- Must pass the country geography and road network test by the General Traffic Department\n\n**Documents:**\n- Certificate from Social Security (التأمينات الاجتماعية)\n- Holding a general driving license\n- Passport or civil ID and copies\n- Medical examination\n- Criminal status certificate (صحيفة الحالة الجنائية)\n- \"السوابق\" (listed as written)\n\n**Fees:**\n- Taxi driving permit: 10 KD\n- Renewal of taxi operating license: 5 KD\n- Renewal of taxi driving permit: 10 KD\n- Damaged replacement: 10 KD\n- Lost replacement: 25 KD\n\n**On-demand taxi permit (تصريح أجرة تحت الطلب):** for drivers working at an office or company doing this activity; the permit ends when leaving that job. Requires a general driving license, conversational Arabic and English, passing the geography/road network test, and annual renewal. Documents include a company letter (residency on the same company), company signature authorization, passport or civil ID and copies, medical exam, and criminal status certificate. Fees: operating license 10 KD, driving permit 30 KD, renewal of driving permit 15 KD, renewal of operating license 15 KD.\n\nNote: the pages do not state how to apply or the channels.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:41",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "تصريح سيارة أجرة / Taxi driver permit"
+        },
+        {
+          "id": "svc:42",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "تصريح اجرة تحت الطلب / On-demand taxi permit"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "What are the requirements for a taxi permit?",
+    "at": "2026-11-14T12:43:28.128Z"
+  },
+  "800a4f0c67:410a247394:-:ما شروط تدريب الطلبه الميداني": {
+    "value": {
+      "answer": "**شروط برنامج تدريب الطلبة الميداني (الهيئة العامة للقوى العاملة):**\n- أن يكون المتقدم كويتي الجنسية.\n- أن يكون مسجلاً في إحدى المراحل التالية: طلبة السنة الثالثة أو الرابعة في التعليم الجامعي، أو طلبة السنة الثانية في الكليات أو المعاهد التي لا تتجاوز مدة الدراسة فيها عامين، أو طلبة الصفين الحادي عشر أو الثاني عشر من المرحلة الثانوية.\n- ألا يكون مسجلاً في المؤسسة العامة للتأمينات الاجتماعية.\n- التفرغ للمشاركة بمعدل 4 ساعات يوميًا، صباحًا أو مساءً، من الأحد إلى الخميس من كل أسبوع.\n- أن يكون قد اجتاز أكثر من نصف المقررات المطلوبة (لطلبة الدبلوم والجامعة).\n\n**المستندات:**\n- صورة البطاقة المدنية من الأمام والخلف.\n- شهادة حديثة \"لمن يهمه الأمر\" من الجهة التعليمية توضح المرحلة الدراسية الحالية.\n- نموذج تحويل راتب باسم الطالب من البنك يتضمن رقم الحساب والآيبان واسم الفرع.\n\n**ملاحظات:**\n- التسجيل إلكترونيًا عبر موقع الهيئة (خدمات الأفراد ← تدريب الطلبة الميداني) من 26/4/2026 إلى 11/6/2026 أو حتى اكتمال العدد المستهدف. هذه الفترة تسبق تاريخ نسخ الصفحة (2026-11-14)، والصفحة لا توضح إن كان التسجيل لا يزال مفتوحًا.\n- التسجيل لا يعني القبول النهائي إلا بعد اعتماد الهيئة.\n- الشهادة التقديرية تتطلب حضورًا لا يقل عن %50، والمكافأة المالية تتطلب حضورًا لا يقل عن %80.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:1",
+          "sourceType": "website",
+          "entity": "PAM",
+          "date": "2026-11-14",
+          "url": "https://www.manpower.gov.kw/CompLoginEServiceDetail.aspx",
+          "title": "تدريب الطلبة الميداني / Student Field Training Program"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما شروط تدريب الطلبة الميداني؟",
+    "at": "2026-11-14T12:43:44.983Z"
+  },
+  "4a32b324fa:410a247394:-:كم رسوم تجديد البطاقه المدنيه": {
+    "value": {
+      "answer": "رسوم تجديد بطاقة كويتي (لمن بلغ 18 سنة) هي **5 دنانير**، وتُدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\n- يُعفى ذوو الإعاقة المتوسطة والشديدة من رسوم إصدار وتجديد البطاقة المدنية عند تقديم ما يثبت ذلك من الهيئة العامة لشئون ذوي الإعاقة، تطبيقاً للقانون رقم 8 لسنة 2010.\n- ملاحظة: المعلومات المتوفرة تخص تجديد بطاقة الكويتي فقط، ولا توجد في المصادر رسوم تجديد بطاقة غير الكويتي.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:49",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "تجديد بطاقة كويتي / Kuwaiti ID card renewal"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "كم رسوم تجديد البطاقة المدنية؟",
+    "at": "2026-11-14T13:19:06.092Z"
+  },
+  "4a32b324fa:410a247394:-:how much does it cost to renew my civil id": {
+    "value": {
+      "answer": "Renewing a **Kuwaiti ID card** (for those aged 18 and over) costs **5 دنانير**. It is paid through the PACI website or the Sahel app.\n\n- People with moderate or severe disabilities are exempt from civil ID issuance and renewal fees if they provide proof from the Public Authority for Disability Affairs (Law No. 8 of 2010).\n- The sources do not give a renewal fee for non-Kuwaitis.\n- Related fee: replacing a lost or damaged Kuwaiti civil ID costs **20 دينار**.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:49",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "تجديد بطاقة كويتي / Kuwaiti ID card renewal"
+        },
+        {
+          "id": "svc:51",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "بدل فاقد / تالف (كويتي) / Replacement of lost or damaged civil ID (Kuwaiti)"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "How much does it cost to renew my civil ID?",
+    "at": "2026-11-14T13:19:13.119Z"
+  },
+  "4a32b324fa:410a247394:-:ما هي المستندات المطلوبه لبدل فاقد البطاقه المدنيه": {
+    "value": {
+      "answer": "المصدر المتوفر يخص بدل فاقد/تالف البطاقة المدنية **للكويتيين** فقط. المستندات المطلوبة:\n- إثبات رسمي ساري المفعول (الجنسية الأصلية أو الجواز أو رخصة القيادة أو تطبيق هويتي).\n- عدد 2 صور شخصية حديثة مطابقة للمواصفات (لكل فرد أتم 5 سنوات فأكثر).\n- أقل من 5 سنوات: شهادة الميلاد الأصلية وصورة عنها أو إثبات جنسية بصورة حديثة.\n- أكثر من 5 سنوات: الجواز الأصلي أو إثبات الجنسية بصورة حديثة.\n\n**شروط مهمة:**\n- حضور صاحب العلاقة أو من ينوب عنه بتوكيل رسمي عام من وزارة العدل أو من خلال تطبيق سهل.\n- لمن هم أقل من 18 سنة: حضور ولي الأمر أو الحاضن في حالات الطلاق.\n- في حال فقدان جميع الوثائق: يجب إحضار كتاب من الإدارة العامة للجنسية بصورة شخصية حديثة.\n- حضور شخصي لمن أكمل 21 سنة.\n\n**الرسوم:** 20 دينار، تدفع عن طريق موقع الهيئة أو تطبيق سهل.\n\n**ملاحظة:** الصفحة غير واضحة تماماً بشأن قواعد المستندات لمن هم 5 سنوات فأكثر، ولا توضح ما إذا كان تطبيق سهل متاحاً لجميع الحالات أم لحالة النيابة فقط. لا توجد معلومات في المصادر عن غير الكويتيين.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:51",
+          "sourceType": "website",
+          "entity": "PACI",
+          "date": "2026-11-14",
+          "url": "https://www.paci.gov.kw/applications-guide",
+          "title": "بدل فاقد / تالف (كويتي) / Replacement of lost or damaged civil ID (Kuwaiti)"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما هي المستندات المطلوبة لبدل فاقد البطاقة المدنية؟",
+    "at": "2026-11-14T13:19:35.446Z"
+  },
+  "4a32b324fa:410a247394:-:ما هي شروط رخصه قياده الدراجه": {
+    "value": {
+      "answer": "**الشرط المذكور لرخصة قيادة دراجة (نارية):** ألا يقل العمر عن 18 سنة.\n\n**المستندات المطلوبة:**\n- جواز السفر أو البطاقة المدنية وصور عنها.\n- فصيلة الدم + الكشف الطبي.\n- عدد 2 صور شخصية (4x6 خلفية زرقاء).\n\n**الخطوات:**\n- طباعة طلب الحصول على رخصة سوق دراجة نارية.\n- بعد الموافقة على الطلب يتم توقيع نموذج شهادة اللياقة الطبية.\n- بعد الكشف الطبي وتحديد فصيلة الدم يتم استخراج تصريح تعليم القيادة من قسم الرخص.\n- تحديد موعد الاختبار عبر موقع وزارة الداخلية.\n- بعد النجاح في الاختبار النظري والعملي تُستكمل إجراءات الحصول على الرخصة في قسم الرخص.\n\n**ملاحظة:** المصدر لا يوضح الفئة المؤهلة للخدمة ولا الرسوم، ولا مكان تقديم الطلب المطبوع.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:15",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "رخصة قيادة دراجة / Motorcycle driving license"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما هي شروط رخصة قيادة الدراجة؟",
+    "at": "2026-11-14T13:19:48.193Z"
+  },
+  "4a32b324fa:410a247394:-:what are the requirements for a taxi permit": {
+    "value": {
+      "answer": "The sources describe the **taxi driver permit** (تصريح سيارة أجرة) from MOI traffic. Requirements:\n\n**Conditions**\n- Must be of Kuwaiti nationality.\n- Must be full-time (متفرغ).\n- Must pass the country geography and road network test by the General Traffic Department.\n\n**Documents**\n- Certificate from Social Security (التأمينات الاجتماعية).\n- A general driving license.\n- Passport or civil ID, and copies.\n- Medical examination.\n- Criminal status certificate (صحيفة الحالة الجنائية).\n- \"السوابق\" (listed as written; the page does not explain it).\n\n**Fees**\n- Taxi driving permit: 10 KD.\n- Renewal of taxi operating licence: 5 KD.\n- Renewal of taxi driving permit: 10 KD.\n- Damaged replacement: 10 KD.\n- Lost replacement: 25 KD.\n\nThe page does not state how to apply, the channels, or the steps.\n\n**On-demand taxi permit** (تصريح أجرة تحت الطلب) is a separate service for drivers working at an office or company doing this activity. It requires a general driving license, spoken Arabic and English, passing the geography test, annual renewal, a company letter (residence must be with the same company), company signature approval, passport or civil ID, medical exam, and criminal status certificate. Its permit fee is 30 KD, and its licence fee is 10 KD.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:41",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "تصريح سيارة أجرة / Taxi driver permit"
+        },
+        {
+          "id": "svc:42",
+          "sourceType": "website",
+          "entity": "MOI",
+          "date": "2026-11-14",
+          "url": "https://www.moi.gov.kw/main/",
+          "title": "تصريح اجرة تحت الطلب / On-demand taxi permit"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "What are the requirements for a taxi permit?",
+    "at": "2026-11-14T13:19:55.073Z"
+  },
+  "4a32b324fa:410a247394:-:what are the conditions for the mohe excellence scholarship": {
+    "value": {
+      "answer": "The sources describe the **Distinguished Scholarships Programme 2027/2026** (البعثات المتميزة). Key conditions:\n\n**General conditions**\n- Kuwaiti nationality.\n- Age not less than (16) and not more than (23) years.\n- Holds the general secondary certificate (Kuwaiti unified system, scientific or literary, or equivalent with a statement from the Ministry of Education's private education department).\n- Certificate validity not more than two academic years from graduation (2024/2025 to 2025/2026, and 1445/1446 to 1446/1447).\n- No first university degree (bachelor's).\n- Not previously on an external scholarship/grant that ended by dismissal or withdrawal after joining in the study country.\n- No scholarship from inside Kuwait or bachelor's grant, unless the amount spent is refunded.\n- Not combining a scholarship and a grant at the same time.\n- Not employed by any government body.\n- Percentage not below the minimum required for the annual scholarship plan. For non-listed majors the student must meet the minimum announced percentage, except medical majors (medicine, dentistry, pharmacy), where it must not be less than 95%.\n- Final academic admission certified by the Cultural Office of the study country, in a distinguished major or at an institution on the excellence lists recommended by the National Accreditation Authority.\n\n**Language test**\n- Academic IELTS: overall not less than (5.5) and not less than (5.5) in all sections, or TOEFL not less than (47), from a Ministry-approved centre inside Kuwait only.\n- Results from outside Kuwait may be accepted if taken at centres approved by Cultural Offices abroad or Kuwaiti embassies, for students who got their secondary certificate from that same country abroad.\n\n**Certificate-specific rules** (English, American, IB-DP, Saudi secondary) are also listed on the page, for example IB: 12 years of study, at least (6) subjects, at least three at High Level.\n\n**Other**\n- The scholarship is cancelled if the student and guardian do not approve the financial and academic undertaking via the Sahel app within (60) days of the admission results announcement.\n\n**Documents**\n- Final secondary transcript\n- Equivalency statement for foreign secondary certificates\n- Final Cultural Office-certified admission\n- Civil ID copies of the student and guardian\n- Passport copy\n- Original certified IELTS/TOEFL copy\n\n**How to apply**: through the Ministry's electronic registration system at https://www.mohe.edu.kw, authenticating via the Hawiya app, after the end of the 2025/2026 school year. Incomplete applications are excluded.\n\nNote: the page does not state the minimum percentage value, and does not state a fee.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:4",
+          "sourceType": "website",
+          "entity": "MOHE",
+          "date": "2026-11-14",
+          "url": "https://www.mohe.edu.kw/site/AR/EServices?PageID=3",
+          "title": "البعثات المتميزة 2027/2026 - إرشادات التسجيل لبرنامج البعثات المتميزة للعام الجامعي 2027/2026 / Distinguished Scholarships Programme 2027/2026 - Registration Guidelines"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "What are the conditions for the MOHE excellence scholarship?",
+    "at": "2026-11-14T13:20:06.405Z"
+  },
+  "4a32b324fa:410a247394:-:ما شروط تدريب الطلبه الميداني": {
+    "value": {
+      "answer": "**شروط برنامج تدريب الطلبة الميداني (الهيئة العامة للقوى العاملة):**\n- أن يكون المتقدم كويتي الجنسية.\n- أن يكون مسجلاً في إحدى المراحل التالية: طلبة السنة الثالثة أو الرابعة في التعليم الجامعي، أو طلبة السنة الثانية في الكليات أو المعاهد التي لا تتجاوز مدة الدراسة فيها عامين، أو طلبة الصفين الحادي عشر أو الثاني عشر من المرحلة الثانوية.\n- ألا يكون مسجلاً في المؤسسة العامة للتأمينات الاجتماعية.\n- التفرغ للمشاركة في البرنامج بمعدل 4 ساعات يوميًا، صباحًا أو مساءً، من الأحد إلى الخميس من كل أسبوع.\n- أن يكون قد اجتاز أكثر من نصف المقررات المطلوبة (لطلبة الدبلوم والجامعة).\n- فترة التسجيل الإلكتروني: من 26/4/2026 إلى 11/6/2026، أو إلى حين اكتمال العدد المستهدف من الفرص التدريبية.\n\n**المستندات:**\n- صورة البطاقة المدنية من الأمام والخلف.\n- شهادة حديثة \"لمن يهمه الأمر\" من الجهة التعليمية توضح المرحلة الدراسية الحالية.\n- نموذج تحويل راتب باسم الطالب من البنك يتضمن رقم الحساب والآيبان واسم الفرع.\n\n**ملاحظات:**\n- التسجيل واختيار الفرصة لا يعني القبول النهائي إلا بعد اعتماد الهيئة.\n- الشهادة التقديرية تُمنح عند حضور لا يقل عن %50، والمكافأة المالية عند حضور لا يقل عن %80 من مدة البرنامج.\n- التقديم عبر الموقع الإلكتروني للهيئة: الخدمات الإلكترونية ← خدمات الأفراد ← تدريب الطلبة الميداني.\n\n**تنبيه:** فترة التسجيل المذكورة انتهت قبل تاريخ نسخ الصفحة (2026-11-14)، والصفحة لا توضح هل التسجيل ما زال مفتوحاً.",
+      "status": "answered",
+      "sources": [
+        {
+          "id": "svc:1",
+          "sourceType": "website",
+          "entity": "PAM",
+          "date": "2026-11-14",
+          "url": "https://www.manpower.gov.kw/CompLoginEServiceDetail.aspx",
+          "title": "تدريب الطلبة الميداني / Student Field Training Program"
+        }
+      ],
+      "change_note": null
+    },
+    "question": "ما شروط تدريب الطلبة الميداني؟",
+    "at": "2026-11-14T13:20:17.329Z"
+  }
+}

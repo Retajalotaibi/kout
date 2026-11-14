@@ -1,16 +1,5 @@
 node_modules/
 .env
 dist/
-data/state.json
-data/llm_spend.json
-# runtime data (stored in MongoDB, mirrored here)
-data/posts.json
-data/labels.json
-data/posts_clean.json
-data/knowledge.json
-data/answer_cache.json
-data/expand_cache.json
-data/eligibility_rules.json
-data/summary_cache.json
-data/extracted_services.json
+# Runtime data lives in MongoDB; the data/*.json snapshot is committed as the offline/deploy fallback.
 data/extract_cache.json

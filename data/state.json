@@ -1,0 +1,42 @@
+{
+  "user_ids": {
+    "moi_kuw": {
+      "id": "570887519",
+      "username": "Moi_kuw"
+    },
+    "kuna_ar": {
+      "id": "255455212",
+      "username": "kuna_ar"
+    },
+    "kuna_en": {
+      "id": "255455960",
+      "username": "kuna_en"
+    },
+    "kuwaiticm": {
+      "id": "821692297",
+      "username": "KuwaitiCM"
+    },
+    "kuwait_moh": {
+      "id": "919571515",
+      "username": "KUWAIT_MOH"
+    },
+    "mod_kw": {
+      "id": "282194628",
+      "username": "MOD_KW"
+    },
+    "kuwaitarmyghq": {
+      "id": "3314169632",
+      "username": "KuwaitArmyGHQ"
+    }
+  },
+  "since_ids": {
+    "moi_kuw": "2120955382625411116",
+    "kuna_ar": "2121565846048739472",
+    "kuna_en": "2121560404530754008",
+    "kuwaiticm": "2120178249561239844",
+    "kuwait_moh": "2121579022148575476",
+    "kuwaitarmyghq": "2121266848742224242"
+  },
+  "spent_usd": 0.365,
+  "last_poll": "2026-11-14T12:49:26.761Z"
+}

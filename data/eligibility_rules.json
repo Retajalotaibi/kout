@@ -1,0 +1,551 @@
+{
+  "تدريب الطلبة الميداني|PAM": {
+    "hash": "8dbd538386",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون المتقدم كويتي الجنسية",
+      "other_conditions": [
+        "أن يكون مسجلاً في إحدى المراحل التعليمية التالية: طلبة السنة الثالثة أو الرابعة في التعليم الجامعي. طلبة السنة الثانية في الكليات أو المعاهد التي لا تتجاوز مدة الدراسة فيها عامين. طلبة الصفين الحادي عشر أو الثاني عشر من المرحلة الثانوية.",
+        "ألا يكون مسجلاً في المؤسسة العامة للتأمينات الاجتماعية",
+        "التفرغ للمشاركة في البرنامج التدريبي بمعدل 4 ساعات يوميًا، صباحًا أو مساءً، من الأحد إلى الخميس من كل أسبوع",
+        "أن يكون قد اجتاز أكثر من نصف المقررات المطلوبة (لطلبة الدبلوم والجامعة)"
+      ]
+    }
+  },
+  "مواعيد الفحص الطبي قبل الزواج|MOH": {
+    "hash": "3e67707554",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "البعثات المتميزة 2027/2026 - إرشادات التسجيل لبرنامج البعثات المتميزة للعام الجامعي 2027/2026|MOHE": {
+    "hash": "f6c56026d5",
+    "rules": {
+      "min_age": 16,
+      "max_age": 23,
+      "age_quote": "ألا يقل سن المتقدم عن (16) عاماً وألا يزيد عن (23) عاماً",
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية",
+      "other_conditions": [
+        "أن يكون حاصلاً على شهادة الثانوية العامة.",
+        "ألا يكون حاصلاً على الدرجة الجامعية الأولى (البكالوريوس).",
+        "ألا يكون موظفاً في أي جهة من جهات الدولة.",
+        "ألا تقل النسبة المئوية عن الحد الأدنى المطلوب للقبول في خطة البعثات السنوية."
+      ]
+    }
+  },
+  "بعثات ابناء الدبلوماسيين 2027/2026|MOHE": {
+    "hash": "ba0ef59b8c",
+    "rules": {
+      "min_age": 16,
+      "max_age": 23,
+      "age_quote": "ألا يقل سن المتقدم عن (16) عاماً وألا يزيد عن (23) عاماً",
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية.",
+      "other_conditions": [
+        "أن يكون حاصلاً على شهادة الثانوية العامة.",
+        "ألا يكون حاصلاً على الدرجة الجامعية الأولى (البكالوريوس).",
+        "ألا يكون موظفاً في أي جهة من جهات الدولة.",
+        "أن يكون حاصلاً على قبول أكاديمي نهائي ومصدق من المكتب الثقافي التابع لبلد الدراسة."
+      ]
+    }
+  },
+  "إيفاد حملة الشهادة الجامعية الأولى لبرنامج الطب البشري المتقدم 2027/2026|MOHE": {
+    "hash": "54c1c786d9",
+    "rules": {
+      "min_age": null,
+      "max_age": 30,
+      "age_quote": "ألا يزيد سن المتقدم عن (30) عاما",
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون المتقدم كويتي الجنسية.",
+      "other_conditions": [
+        "أن يكون حاصلا على شهادة الثانوية الكويتية أو ما يعادلها بالقسم العلمي.",
+        "أن يكون حاصلا على الشهادة الجامعية الأولى – البكالوريوس (Level 8) - (BSc Honours)، أو ما يعادلها في أحد التخصصات العلمية (الهندسة، العلوم، العلوم الطبية المساعدة، الصيدلة) بتقدير عام لا يقل عن المحدد أدناه",
+        "ألا يكون المتقدم موظفا في أية جهة أو مجازاً دراسيا أو مبعوثا من جهة أخرى عند الابتعاث."
+      ]
+    }
+  },
+  "الانسحاب من البعثة بعد إعلان نتائج القبول|MOHE": {
+    "hash": "0cb3d1c3e6",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "بعثات الهيئة العامة لشؤون ذوي الإعاقة 2027/2026|MOHE": {
+    "hash": "8001cab02f",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "شروط ضم الطلبة الخاصين إلى بعثات وزارة التعليم العالي|MOHE": {
+    "hash": "0952ddeae4",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية.",
+      "other_conditions": [
+        "ألا يكون موظفا.",
+        "أن يكون حاصلا على الثانوية العامة أو ما يعادلها.",
+        "ألا يكون حاصلا على الإجازة الجامعية أو ما يعادلها.",
+        "أن يكون مقبولا بجامعة موصى بها لدى الوزارة في مجال تخصصه."
+      ]
+    }
+  },
+  "الإجراءات الخاصة بعد اعلان أسماء الطلبة المقبولين في خطة بعثات الوزارة|MOHE": {
+    "hash": "20fb85d3cd",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "الانسحاب من البعثة|MOHE": {
+    "hash": "dba4200ef1",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "نظام معادلة الشهادات|MOHE": {
+    "hash": "d47fbff14a",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "التقديم على المكافأة الاجتماعية|MOHE": {
+    "hash": "6421aeb9e8",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti_or_kuwaiti_mother",
+      "nationality_quote": "ان يكون الطالب كويتي الجنسية أو من أبناء الكويتيات",
+      "other_conditions": [
+        "ان يكون للطالب بطاقة مدنية صالحة.",
+        "ان يكون الطالب دارسا خارج دولة الكويت وعلى نفقته الخاصة.",
+        "ان لا يكون الطالب موظفا.",
+        "ان لا يتقاضى الطالب راتبا أو مساعدة مالية من أي جهه حكومية.",
+        "ان يقدم الطالب ما يثبت دراسته في إحدى الجامعات المعتمدة لدى الجهاز الوطني للإعتماد الأكاديمي لضمان جودة التعليم وان يكون مصدقا من الجهات الرسمية الخارجية ( المكتب الثقافي الكويتي فقط )."
+      ]
+    }
+  },
+  "إصدار رخصة قيادة خاصة|MOI": {
+    "hash": "b4e36dbd48",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": [
+        "اقامة قانونية منذ سنتان او حسب القرار الوزاري رقم1729 لسنة2005"
+      ]
+    }
+  },
+  "رخصة قيادة دراجة|MOI": {
+    "hash": "078f1cf21d",
+    "rules": {
+      "min_age": 18,
+      "max_age": null,
+      "age_quote": "أن لا يقل العمر عن ) 18 ( سنة",
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تجديد رخصة سوق )كويتي/غير كويتي(|MOI": {
+    "hash": "707edd68f5",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "استخراج بدل تالف أو فاقد لرخصة السوق|MOI": {
+    "hash": "d57726438c",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تصريح مرافق للتدريب|MOI": {
+    "hash": "12893a38d7",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": [
+        "ان يكون حاصلا على رخصة قيادة عامة .",
+        "ان يكون حسن السمعة لم يسبق الحكم عليه بعقوبة جنائية او جريمة مخلة بالشرف او الامانة او ارتكب حوادث مرورية خطرة او ضبط يقود سيارة وهو تحت تأثير المسكرات او المخدرات .",
+        "اجتياز اختبار خاص في القيادة وتعليمات وقواعد وآداب المرور وفي مبادئ ميكانيكا السيارات ومدى كفاءته على القيام بالتعليم .",
+        "ان يكون حاصلا على الشهادة الثانوية أو ما يعادلها."
+      ]
+    }
+  },
+  "تراخيص المركبات|MOI": {
+    "hash": "6cf048a7c2",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "إصدار اللوحات التجارية|MOI": {
+    "hash": "8a96582128",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "استخدام المركبات التجارية|MOI": {
+    "hash": "62d9279eac",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": [
+        "متى كان الطالب مقيدا بهذه الصفة في السجل التجاري"
+      ]
+    }
+  },
+  "إعفاء المركبات الآلية للعابرين الأجانب والسائحين ومن في حكمهم الحصول على ترخيص|MOI": {
+    "hash": "3d2ef61abd",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "non_kuwaiti",
+      "nationality_quote": "العابرين الأجانب",
+      "other_conditions": []
+    }
+  },
+  "المركبات الجديدة|MOI": {
+    "hash": "ebcf90acdf",
+    "rules": {
+      "min_age": 21,
+      "max_age": null,
+      "age_quote": "لا تسجل المركبة لشخص أقل من21 سنة",
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "ترخيص مركبات الديوان الأميري والركبات الحكومية|MOI": {
+    "hash": "3e618cc8c0",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تجديد تسيير المركبة|MOI": {
+    "hash": "bae4cb0b26",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تجديد ترخيص المركبة اذا كانت خارج الكويت|MOI": {
+    "hash": "0e4274491a",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "نقل ترخيص المركبة|MOI": {
+    "hash": "4d81f7b055",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "لوحات التصدير|MOI": {
+    "hash": "b78fee9b58",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "لوحات إدخال جمركي|MOI": {
+    "hash": "f16dd75ce4",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "لوحات الهيئة السياسية|MOI": {
+    "hash": "c60651d525",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تغيير مواصفات المركبة|MOI": {
+    "hash": "c6a6f8ba4a",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تسقيط سكراب|MOI": {
+    "hash": "5d549437c8",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "إلغاء ترخيص المركبة في حالة التصدير|MOI": {
+    "hash": "f79f65027e",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "طلب كشف للمركبة|MOI": {
+    "hash": "1344bd3c53",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تصريح سيارة أجرة|MOI": {
+    "hash": "d2e528628d",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية .",
+      "other_conditions": [
+        "أن يكون متفرغا .",
+        "اجتياز اختبار جغرافية البلد وشبكة الطرق من قبل الإدارة العامة للمرور ."
+      ]
+    }
+  },
+  "تصريح اجرة تحت الطلب|MOI": {
+    "hash": "772b5dd453",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": [
+        "أن يكون حاصلا على رخصة قيادة عامة .",
+        "الإلمام باللغة العربية والانجليزية محادثة.",
+        "اجتياز اختبار جغرافية البلد وشبكة الطرق من قبل الإدارة العامة للمرور."
+      ]
+    }
+  },
+  "تصريح باص عام|MOI": {
+    "hash": "f82046be27",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية .",
+      "other_conditions": [
+        "أن يكون حاصلا على رخصة قيادة عامة .",
+        "اجتياز اختبار خاص في القيادة وتعليمات المرور وقواعدها .",
+        "الإلمام بجغرافية البلد ."
+      ]
+    }
+  },
+  "تصريح الوانيت|MOI": {
+    "hash": "742252eb2b",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تصريح بيع المأكولات الخفيفة|MOI": {
+    "hash": "7d01ac9509",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "أن يكون كويتي الجنسية.",
+      "other_conditions": [
+        "أن يكون لديه إجازة قيادة عامة."
+      ]
+    }
+  },
+  "تحديث صورة فرد (كويتي)|PACI": {
+    "hash": "9c9fb94e26",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "Kuwaiti individuals",
+      "other_conditions": []
+    }
+  },
+  "تسجيل القيد المدني لأبناء الشئون / نزيل دور الرعاية / المحتضن|PACI": {
+    "hash": "9e21a19c70",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "شطب أحد الافراد من الوحدة السكنية|PACI": {
+    "hash": "df54f14b7d",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "تجديد بطاقة كويتي|PACI": {
+    "hash": "cc8431271d",
+    "rules": {
+      "min_age": 18,
+      "max_age": null,
+      "age_quote": "لمن بلغ 18 سنة",
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": [
+        "بشرط أن لا يكون هناك طلب لتغيير الصورة الشخصية."
+      ]
+    }
+  },
+  "استكمال بيانات مولود كويتي|PACI": {
+    "hash": "29da75150c",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  },
+  "بدل فاقد / تالف (كويتي)|PACI": {
+    "hash": "9f6cb2bcec",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": "kuwaiti",
+      "nationality_quote": "Kuwaiti citizens",
+      "other_conditions": []
+    }
+  },
+  "إضافة رقم الهاتف (كويتي / غير كويتي)|PACI": {
+    "hash": "e6b6970b5e",
+    "rules": {
+      "min_age": null,
+      "max_age": null,
+      "age_quote": null,
+      "nationality": null,
+      "nationality_quote": null,
+      "other_conditions": []
+    }
+  }
+}
