@@ -10,6 +10,7 @@ import { summarizePosts } from './lib/summarize.js';
 import { enabledAccounts as allAccountsFor } from './lib/xSource.js';
 import { runPoll } from './lib/pipeline.js';
 import { answerQuestion } from './lib/chat.js';
+import { eligibilityList } from './lib/eligibility.js';
 
 const app = express();
 app.use(express.json({ limit: '100kb' }));
@@ -100,6 +101,16 @@ app.post('/api/ask', async (req, res) => {
     entityOf: (p) => entityByHandle[String(p.account).toLowerCase()] ?? p.account,
   });
   res.json({ kind: 'tweets', text, summary, summaryCached: cached, posts: shown });
+});
+
+// Eligibility rules (age / nationality) per service. The user's civil ID is checked in the browser, never sent here.
+app.get('/api/eligibility', async (_req, res) => {
+  try {
+    res.json({ services: await eligibilityList() });
+  } catch (err) {
+    console.error('[eligibility]', err);
+    res.status(500).json({ error: 'Could not load eligibility rules' });
+  }
 });
 
 app.get('/api/stats', async (_req, res) => {

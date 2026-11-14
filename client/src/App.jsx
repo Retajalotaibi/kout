@@ -61,6 +61,7 @@ export default function App() {
 
   const empty = messages.length === 0;
   const actions = [
+    { label: 'Check my eligibility · تحقق من أهليتي', onClick: () => push({ kind: 'eligibility' }) },
     { label: 'Check for new announcements', onClick: checkAnnouncements },
     { label: 'Show the latest 4 tweets', onClick: () => send('Show the latest 4 tweets') },
     { label: 'آخر تغريدة مفيدة', onClick: () => send('آخر تغريدة مفيدة') },

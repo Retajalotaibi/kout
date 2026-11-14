@@ -2,13 +2,17 @@
   "name": "kout",
   "private": true,
   "type": "module",
-  "workspaces": ["server", "client"],
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "scripts": {
     "dev": "concurrently -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
     "ingest:x": "node server/src/scripts/ingest-x.js",
     "classify": "node server/src/scripts/classify.js",
     "build:knowledge": "node server/src/scripts/build-knowledge.js",
-    "extract:services": "node server/src/scripts/extract-services.js"
+    "extract:services": "node server/src/scripts/extract-services.js",
+    "build:eligibility": "node server/src/scripts/build-eligibility.js"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"

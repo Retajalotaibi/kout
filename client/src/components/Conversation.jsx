@@ -1,4 +1,5 @@
 import PostCard from './PostCard.jsx';
+import Eligibility from './Eligibility.jsx';
 
 const usd = (n, d = 3) => `$${(Number(n) || 0).toFixed(d)}`;
 
@@ -58,6 +59,7 @@ export default function Conversation({ messages }) {
             {m.kind === 'error' && <p className="text-red-700">{m.text}</p>}
             {m.kind === 'text' && <p className="text-ink-soft">{m.text}</p>}
             {m.kind === 'poll' && <PollResult r={m.result} />}
+            {m.kind === 'eligibility' && <Eligibility />}
             {m.kind === 'answer' && (
               <div className="space-y-3">
                 {m.change_note && <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">{m.change_note}</p>}

@@ -11,3 +11,4 @@ export const posts = () => request('/api/posts');
 export const ask = (message, history = []) =>
   request('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, history }) });
 export const poll = () => request('/api/poll', { method: 'POST' });
+export const eligibility = () => request('/api/eligibility');

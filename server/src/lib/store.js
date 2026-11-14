@@ -8,7 +8,7 @@ import path from 'node:path';
 import { MongoClient } from 'mongodb';
 import { DATA, readJSON, writeJSON } from './paths.js';
 
-export const NAMES = ['state', 'posts', 'labels', 'posts_clean', 'llm_spend', 'knowledge', 'answer_cache', 'expand_cache', 'summary_cache', 'extracted_services', 'extract_cache'];
+export const NAMES = ['state', 'posts', 'labels', 'posts_clean', 'llm_spend', 'knowledge', 'answer_cache', 'expand_cache', 'summary_cache', 'extracted_services', 'extract_cache', 'eligibility_rules'];
 const RETRY_MS = 30_000;
 
 const fileOf = (name) => path.join(DATA, `${name}.json`);
