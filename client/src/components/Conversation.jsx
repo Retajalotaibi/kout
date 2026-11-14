@@ -58,6 +58,22 @@ export default function Conversation({ messages }) {
             {m.kind === 'error' && <p className="text-red-700">{m.text}</p>}
             {m.kind === 'text' && <p className="text-ink-soft">{m.text}</p>}
             {m.kind === 'poll' && <PollResult r={m.result} />}
+            {m.kind === 'answer' && (
+              <div className="space-y-3">
+                {m.change_note && <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-900">{m.change_note}</p>}
+                <div className={`whitespace-pre-wrap ${m.status === 'answered' ? 'text-ink' : 'text-ink-soft'}`}>{m.answer}</div>
+                {m.sources?.length > 0 && (
+                  <ul className="space-y-1 text-sm">
+                    {m.sources.map((s) => (
+                      <li key={s.id} dir="auto">
+                        <span className="text-ink-faint">{s.sourceType === 'x_post' ? 'X post' : 'Website'} · {s.entity} · {s.date} · </span>
+                        <a href={s.url} target="_blank" rel="noreferrer" className="text-brand-700 underline">{s.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
             {m.kind === 'posts' && (
               <div className="space-y-3">
                 {m.summary && (

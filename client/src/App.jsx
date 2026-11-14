@@ -43,8 +43,15 @@ export default function App() {
     push({ kind: 'user', text });
     push({ kind: 'pending', text: 'Looking it up…' });
     try {
-      const r = await ask(text);
-      replacePending(r.kind === 'tweets' ? { kind: 'posts', text: r.text, summary: r.summary, posts: r.posts } : { kind: 'text', text: r.text });
+      // Last few question/answer turns so follow-ups ("and the fee?") work.
+      const history = messages
+        .filter((m) => m.kind === 'user' || m.kind === 'answer')
+        .slice(-6)
+        .map((m) => ({ role: m.kind === 'user' ? 'user' : 'assistant', content: m.kind === 'user' ? m.text : m.answer }));
+      const r = await ask(text, history);
+      if (r.kind === 'tweets') replacePending({ kind: 'posts', text: r.text, summary: r.summary, posts: r.posts });
+      else if (r.kind === 'answer') replacePending({ kind: 'answer', ...r });
+      else replacePending({ kind: 'text', text: r.text });
     } catch (err) {
       replacePending({ kind: 'error', text: err.message });
     } finally {

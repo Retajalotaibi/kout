@@ -9,6 +9,7 @@ import { parseTweetsQuery, ENTITY_AR } from './lib/intent.js';
 import { summarizePosts } from './lib/summarize.js';
 import { enabledAccounts as allAccountsFor } from './lib/xSource.js';
 import { runPoll } from './lib/pipeline.js';
+import { answerQuestion } from './lib/chat.js';
 
 const app = express();
 app.use(express.json({ limit: '100kb' }));
@@ -59,13 +60,15 @@ app.post('/api/ask', async (req, res) => {
   const q = parseTweetsQuery(message);
   const ar = /[\u0600-\u06FF]/.test(message);
   if (!q) {
-    return res.json({
-      kind: 'unsupported',
-      text: ar
-        ? 'حالياً أستطيع عرض آخر التغريدات الرسمية فقط، مثل: «آخر 4 تغريدات». الإجابة على الأسئلة عن الخدمات قادمة قريباً.'
-        : 'For now I can only show recent official tweets, e.g. “show the latest 4 tweets”. Answers about services are coming next.',
-    });
+    try {
+      const r = await answerQuestion(message, req.body?.history);
+      return res.json({ kind: 'answer', ...r });
+    } catch (err) {
+      console.error('[ask]', err);
+      return res.status(500).json({ error: ar ? 'حدث خطأ، حاول مرة أخرى.' : 'Something went wrong, please try again.' });
+    }
   }
+
 
   const [posts, labels] = await Promise.all([loadPosts(), loadLabels()]);
   const handles = new Set(q.accounts.map((a) => a.handle.toLowerCase()));
