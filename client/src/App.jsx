@@ -81,8 +81,12 @@ export default function App() {
       {empty ? (
         <main className="flex flex-1 flex-col items-center overflow-y-auto px-4 pb-10 pt-8 sm:justify-center sm:pt-4">
           <img src="/logo.png" alt="Kout · كوت" className="mb-5 h-24 w-auto sm:h-28" />
-          <h1 className="mb-1 text-center font-serif text-3xl text-brand-800 sm:text-4xl">How can I help you today?</h1>
-          <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
+          <h1 dir="rtl" className="mb-2 text-center font-serif text-3xl text-brand-800 sm:text-4xl">
+            اسأل عن أي خدمة حكومية… <span className="text-accent-500">والجواب من المصدر</span>
+          </h1>
+          <p className="mb-8 text-center text-base text-ink-soft sm:text-lg">
+            Ask anything about Kuwait&apos;s government services. Get the answer straight from the official source.
+          </p>
           <div className="w-full max-w-2xl">
             <Faq onAsk={send} disabled={busy} />
             <Composer disabled={busy} onSend={send} />
