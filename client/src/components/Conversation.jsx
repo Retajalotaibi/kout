@@ -56,10 +56,11 @@ export default function Conversation({ messages }) {
               </div>
             )}
             {m.kind === 'error' && <p className="text-red-700">{m.text}</p>}
+            {m.kind === 'text' && <p className="text-ink-soft">{m.text}</p>}
             {m.kind === 'poll' && <PollResult r={m.result} />}
             {m.kind === 'posts' && (
               <div className="space-y-3">
-                <p>{m.posts.length ? `The ${m.posts.length} most recent stored posts:` : 'No posts stored yet.'}</p>
+                <p>{m.text ?? (m.posts.length ? `The ${m.posts.length} most recent stored posts:` : 'No posts stored yet.')}</p>
                 <div className="space-y-2">{m.posts.map((p) => <PostCard key={p.id} post={p} />)}</div>
               </div>
             )}

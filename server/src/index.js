@@ -5,6 +5,7 @@ import { loadPosts } from './lib/posts.js';
 import { loadLabels } from './lib/classify.js';
 import { loadKnowledge } from './lib/knowledge.js';
 import { storeStatus } from './lib/store.js';
+import { parseTweetsQuery, ENTITY_AR } from './lib/intent.js';
 import { runPoll } from './lib/pipeline.js';
 
 const app = express();
@@ -45,6 +46,49 @@ app.post('/api/poll', async (_req, res) => {
   } finally {
     polling = false;
   }
+});
+
+// Chat box (step 1): recent-tweet questions are answered from the database for free.
+// Everything else gets a "coming soon" reply until /api/chat (search + Claude) is built.
+app.post('/api/ask', async (req, res) => {
+  const message = typeof req.body?.message === 'string' ? req.body.message.trim().slice(0, 2000) : '';
+  if (!message) return res.status(400).json({ error: 'message is required' });
+
+  const q = parseTweetsQuery(message);
+  const ar = /[\u0600-\u06FF]/.test(message);
+  if (!q) {
+    return res.json({
+      kind: 'unsupported',
+      text: ar
+        ? 'حالياً أستطيع عرض آخر التغريدات الرسمية فقط، مثل: «آخر 4 تغريدات». الإجابة على الأسئلة عن الخدمات قادمة قريباً.'
+        : 'For now I can only show recent official tweets, e.g. “show the latest 4 tweets”. Answers about services are coming next.',
+    });
+  }
+
+  const [posts, labels] = await Promise.all([loadPosts(), loadLabels()]);
+  const handles = new Set(q.accounts.map((a) => a.handle.toLowerCase()));
+  const matches = [...posts]
+    .filter((p) => !handles.size || handles.has(String(p.account).toLowerCase()))
+    .filter((p) => !q.keptOnly || (labels[p.id] && labels[p.id].category !== 'not_relevant'))
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+  const shown = matches.slice(0, q.count).map((p) => ({ ...p, label: labels[p.id] ?? null }));
+
+  const entities = [...new Set(q.accounts.map((a) => a.entity))];
+  const who = entities.length ? entities.map((e) => (ar ? ENTITY_AR[e] ?? e : e)).join(ar ? '، ' : ', ') : null;
+  let text;
+  if (!shown.length) {
+    text = ar
+      ? `لا توجد تغريدات محفوظة${who ? ` من ${who}` : ''}${q.keptOnly ? ' مصنفة كمفيدة' : ''} حتى الآن.`
+      : `No ${q.keptOnly ? 'useful ' : ''}tweets saved${who ? ` from ${who}` : ''} yet.`;
+  } else {
+    text = ar
+      ? `آخر ${shown.length} ${shown.length === 1 ? 'تغريدة' : 'تغريدات'}${q.keptOnly ? ' مفيدة' : ''}${who ? ` من ${who}` : ''}:`
+      : `The latest ${shown.length === 1 ? '' : `${shown.length} `}${q.keptOnly ? 'useful ' : ''}${shown.length === 1 ? 'tweet' : 'tweets'}${who ? ` from ${who}` : ''}:`;
+    if (shown.length < q.count && matches.length === shown.length) {
+      text += ar ? ` (هذا كل ما هو محفوظ)` : ` (that's all we have saved)`;
+    }
+  }
+  res.json({ kind: 'tweets', text, posts: shown });
 });
 
 app.get('/api/stats', async (_req, res) => {

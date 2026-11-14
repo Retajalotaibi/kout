@@ -15,17 +15,17 @@ export default function Composer({ disabled, onSend }) {
         dir="auto"
         rows={2}
         value={text}
-        disabled={disabled}
         maxLength={2000}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }}
-        placeholder={disabled ? 'Chat is coming in the next step — use the buttons below to test X for now.' : 'Ask about a government service… اكتب سؤالك'}
+        placeholder="Ask for recent tweets, e.g. “latest 4 tweets” · اسأل عن آخر التغريدات"
         className="w-full resize-none bg-transparent px-1 text-[15px] text-ink placeholder:text-ink-faint focus:outline-none disabled:cursor-not-allowed"
       />
       <div className="flex justify-end">
         <button
           onClick={send}
           disabled={disabled || !text.trim()}
+          title="Send"
           aria-label="Send"
           className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-30"
         >

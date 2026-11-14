@@ -2,10 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
 import Composer from './components/Composer.jsx';
 import Conversation from './components/Conversation.jsx';
-import { poll, posts as fetchPosts, stats as fetchStats } from './api.js';
+import { ask, poll, stats as fetchStats } from './api.js';
 
-// Chat answers arrive with the /api/chat endpoint (next step). Until then the composer is disabled.
-const CHAT_ENABLED = false;
 
 let nextId = 1;
 
@@ -39,20 +37,26 @@ export default function App() {
     }
   }
 
-  async function showStoredPosts() {
+  async function send(text) {
     if (busy) return;
-    push({ kind: 'user', text: 'Show stored posts' });
+    setBusy(true);
+    push({ kind: 'user', text });
+    push({ kind: 'pending', text: 'Looking it up…' });
     try {
-      push({ kind: 'posts', posts: await fetchPosts() });
+      const r = await ask(text);
+      replacePending(r.kind === 'tweets' ? { kind: 'posts', text: r.text, posts: r.posts } : { kind: 'text', text: r.text });
     } catch (err) {
-      push({ kind: 'error', text: err.message });
+      replacePending({ kind: 'error', text: err.message });
+    } finally {
+      setBusy(false);
     }
   }
 
   const empty = messages.length === 0;
   const actions = [
     { label: 'Check for new announcements', onClick: checkAnnouncements },
-    { label: 'Show stored posts', onClick: showStoredPosts },
+    { label: 'Show the latest 4 tweets', onClick: () => send('Show the latest 4 tweets') },
+    { label: 'آخر تغريدة مفيدة', onClick: () => send('آخر تغريدة مفيدة') },
   ];
 
   return (
@@ -64,11 +68,12 @@ export default function App() {
           <h1 className="mb-1 text-center font-serif text-3xl text-ink sm:text-4xl">How can I help you today?</h1>
           <p dir="rtl" className="mb-8 text-center font-serif text-xl text-ink-soft">كيف يمكنني مساعدتك اليوم؟</p>
           <div className="w-full max-w-2xl">
-            <Composer disabled={!CHAT_ENABLED} />
+            <Composer disabled={busy} onSend={send} />
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               {actions.map((a) => (
                 <button
                   key={a.label}
+                  dir="auto"
                   onClick={a.onClick}
                   disabled={busy}
                   className="rounded-lg border border-paper-line bg-paper-card px-3 py-1.5 text-sm text-ink-soft hover:border-ink-faint hover:text-ink disabled:opacity-50"
@@ -101,7 +106,7 @@ export default function App() {
                   </button>
                 ))}
               </div>
-              <Composer disabled={!CHAT_ENABLED} />
+              <Composer disabled={busy} onSend={send} />
             </div>
           </div>
         </>
