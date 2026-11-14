@@ -4,7 +4,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { ROOT } from './paths.js';
+import { CONFIG, ROOT, readJSON } from './paths.js';
 import { callJSON, FAST_MODEL } from './claude.js';
 import { loadPrompt } from './prompts.js';
 import { load, save } from './store.js';
@@ -46,6 +46,17 @@ export function parsePages(fileText, defaultEntity) {
       return { url: pickUrl(h[1], body), copied: h[2], entity: (entity || fileEntity || '').trim(), list, text: body };
     })
     .filter((p) => p.text.length >= MIN_PAGE_CHARS);
+}
+
+/**
+ * Fallback URL for pages without their own: the first real URL in the same file's headers,
+ * else the entity's first page in config/sites.json.
+ */
+function fallbackUrl(pages, entity) {
+  const inFile = pages.find((p) => hasUrl(p))?.url;
+  if (inFile) return inFile;
+  const site = readJSON(path.join(CONFIG, 'sites.json'), []).find((s) => s.entity === entity && s.url);
+  return site?.url ?? null;
 }
 
 function manualFiles() {
@@ -110,14 +121,22 @@ function normalize(s, page) {
 export async function extractServices({ force = false } = {}) {
   const system = loadPrompt('extract-services');
   const cache = await load('extract_cache', {});
-  const stats = { pages: 0, extracted: 0, cached: 0, failed: 0, needsUrl: 0, lists: 0 };
+  const stats = { pages: 0, extracted: 0, cached: 0, failed: 0, needsUrl: 0, lists: 0, sharedUrl: 0 };
   const services = [];
   const seenKeys = new Set();
 
   for (const file of manualFiles()) {
     const stem = path.basename(file, '.md');
-    for (const page of parsePages(fs.readFileSync(file, 'utf-8'), stem.toUpperCase())) {
+    const pages = parsePages(fs.readFileSync(file, 'utf-8'), stem.toUpperCase());
+    for (const page of pages) {
       stats.pages++;
+      if (!hasUrl(page)) {
+        const url = fallbackUrl(pages, page.entity);
+        if (url) {
+          page.url = url;
+          stats.sharedUrl++;
+        }
+      }
       if (!hasUrl(page)) {
         stats.needsUrl++;
         console.warn(`[services] skipped (no URL yet) ${stem}.md: ${page.text.split('\n')[0].slice(0, 60)}`);
@@ -162,7 +181,7 @@ export async function extractServices({ force = false } = {}) {
 
   console.log(
     `[services] pages=${stats.pages} extracted=${stats.extracted} cached=${stats.cached} failed=${stats.failed} ` +
-      `lists=${stats.lists} needs_url=${stats.needsUrl} services=${unique.length}`,
+      `lists=${stats.lists} shared_url=${stats.sharedUrl} needs_url=${stats.needsUrl} services=${unique.length}`,
   );
   return { ...stats, services: unique };
 }

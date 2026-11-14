@@ -19,7 +19,7 @@ Tips:
 - Then run:  npm run extract:services
 -->
 
-=== PASTE-URL-HERE | copied 2026-11-14 ===
+=== [PASTE-URL-HERE](https://www.pama.gov.kw/services/services2) | copied 2026-11-14 ===
 القصر:
 طلب انشاء
 المستندات المطلوبة: البطاقات المدنية لجميع القاطنون بالعقار

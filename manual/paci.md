@@ -19,7 +19,7 @@ Tips:
 - Then run:  npm run extract:services
 -->
 
-=== PASTE-URL-HERE | copied 2026-11-14 ===
+=== [PASTE-URL-HERE ](https://www.paci.gov.kw/applications-guide)| copied 2026-11-14 ===
 تحديث صورة فرد (كويتي)
 طريقة الوصول للخدمة
 
