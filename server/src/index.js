@@ -3,6 +3,8 @@ import { readJSON } from './lib/paths.js';
 import { CHAT_MODEL, FAST_MODEL, checkModel, llmSpend } from './lib/claude.js';
 import { budgetSnapshot, enabledAccounts } from './lib/xSource.js';
 import { POSTS_FILE } from './lib/posts.js';
+import { LABELS_FILE } from './lib/classify.js';
+import { KNOWLEDGE_FILE } from './lib/knowledge.js';
 
 const app = express();
 app.use(express.json({ limit: '100kb' }));
@@ -20,11 +22,23 @@ app.get('/api/health', async (_req, res) => {
 // Most recent ingested X posts (read from disk; no API call).
 app.get('/api/posts', (_req, res) => {
   const posts = readJSON(POSTS_FILE, []);
-  res.json([...posts].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 20));
+  const labels = readJSON(LABELS_FILE, {});
+  res.json(
+    [...posts]
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+      .slice(0, 20)
+      .map((p) => ({ ...p, label: labels[p.id] ?? null })),
+  );
 });
 
 app.get('/api/stats', (_req, res) => {
-  res.json({ llm: llmSpend(), x: budgetSnapshot() });
+  const knowledge = readJSON(KNOWLEDGE_FILE, []);
+  res.json({
+    services: knowledge.filter((k) => k.sourceType === 'website').length,
+    posts: knowledge.filter((k) => k.sourceType === 'x_post').length,
+    llm: llmSpend(),
+    x: budgetSnapshot(),
+  });
 });
 
 const PORT = Number(process.env.PORT) || 3001;

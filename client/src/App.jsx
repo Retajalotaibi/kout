@@ -55,6 +55,8 @@ export default function App() {
             Claude spend: ${stats.llm.spentUsd.toFixed(4)} of ${stats.llm.capUsd.toFixed(2)} ({stats.llm.calls} calls)
             <span className="mx-1 text-slate-300">|</span>
             X spend: ${stats.x.spentUsd.toFixed(3)} of ${stats.x.capUsd.toFixed(2)}
+            <span className="mx-1 text-slate-300">|</span>
+            Knowledge: {stats.services} services, {stats.posts} posts
           </p>
         )}
       </section>
@@ -68,7 +70,17 @@ export default function App() {
               <div className="mb-1 text-xs text-slate-500">
                 @{p.account} · {String(p.date).slice(0, 10)} ·{' '}
                 <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-brand-700 hover:underline">open on X</a>
+                {p.label && (
+                  <span
+                    className={`ms-2 rounded px-1.5 py-0.5 font-medium ${
+                      p.label.category === 'not_relevant' ? 'bg-slate-100 text-slate-500' : 'bg-brand-100 text-brand-800'
+                    }`}
+                  >
+                    {p.label.category === 'not_relevant' ? 'dropped' : `kept · ${p.label.category} · ${p.label.topic}`}
+                  </span>
+                )}
               </div>
+              {p.label?.summary_en && <p className="mb-1 text-xs italic text-slate-600">{p.label.summary_en}</p>}
               <p dir="auto" className="whitespace-pre-wrap text-slate-800">{p.text}</p>
             </li>
           ))}
